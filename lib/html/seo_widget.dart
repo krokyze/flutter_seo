@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seo/html/seo_controller.dart';
 import 'package:seo/html/seo_tag.dart';
-import 'package:seo/seo.dart';
 
 class Seo extends StatelessWidget {
   final SeoTag tag;
