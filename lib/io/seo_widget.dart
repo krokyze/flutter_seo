@@ -5,21 +5,21 @@ class Seo extends StatelessWidget {
 
   const Seo.text({
     super.key,
-    String? text,
+    required String text,
     required this.child,
   });
 
   const Seo.image({
     super.key,
-    String? alt,
-    String? url,
+    required String alt,
+    required String url,
     required this.child,
   });
 
   const Seo.link({
     super.key,
     String? anchor,
-    String? href,
+    required String href,
     required this.child,
   });
 

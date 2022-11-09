@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seo/seo.dart';
 import 'package:seo/seo_tree.dart';
 
 class SeoController extends StatelessWidget {
@@ -13,4 +14,11 @@ class SeoController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => child;
+
+  static Widget process({
+    required BuildContext context,
+    required Seo child,
+  }) {
+    throw 'proccess shouldn\'t be called';
+  }
 }

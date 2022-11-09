@@ -8,7 +8,7 @@ abstract class SeoTree {
 
   SeoTreeNode? traverse();
 
-  Widget build(Seo seo);
+  Widget process(Seo seo);
 }
 
 abstract class SeoTreeNode {

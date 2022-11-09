@@ -64,7 +64,7 @@ class SemanticsTree extends SeoTree {
   }
 
   @override
-  Widget build(Seo seo) {
+  Widget process(Seo seo) {
     final tag = seo.tag;
 
     if (tag is TextTag) {

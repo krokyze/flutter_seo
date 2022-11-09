@@ -24,14 +24,14 @@ class SeoController extends StatefulWidget {
   @override
   State<SeoController> createState() => _SeoControllerState();
 
-  static Widget build({
+  static Widget process({
     required BuildContext context,
     required Seo child,
   }) {
     return context
         .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()!
         .tree
-        .build(child);
+        .process(child);
   }
 }
 

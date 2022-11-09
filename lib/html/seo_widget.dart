@@ -28,6 +28,6 @@ class Seo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SeoController.build(context: context, child: this);
+    return SeoController.process(context: context, child: this);
   }
 }

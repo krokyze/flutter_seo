@@ -46,7 +46,7 @@ class WidgetTree extends SeoTree {
   }
 
   @override
-  Widget build(Seo seo) {
+  Widget process(Seo seo) {
     _controller.add(null);
     return seo.child;
   }
