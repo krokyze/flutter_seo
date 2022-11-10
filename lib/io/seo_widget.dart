@@ -18,7 +18,7 @@ class Seo extends StatelessWidget {
 
   const Seo.link({
     super.key,
-    String? anchor,
+    required String anchor,
     required String href,
     required this.child,
   });

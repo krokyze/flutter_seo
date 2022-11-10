@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seo/html/seo_controller.dart';
-import 'package:seo/html/seo_tag.dart';
+import 'package:seo/seo_tag.dart';
 
 class Seo extends StatelessWidget {
   final SeoTag tag;
@@ -21,13 +21,17 @@ class Seo extends StatelessWidget {
 
   Seo.link({
     super.key,
-    String? anchor,
+    required String anchor,
     required String href,
     required this.child,
   }) : tag = LinkTag(anchor: anchor, href: href);
 
   @override
   Widget build(BuildContext context) {
-    return SeoController.process(context: context, child: this);
+    return SeoController.process(
+      context: context,
+      tag: tag,
+      child: child,
+    );
   }
 }

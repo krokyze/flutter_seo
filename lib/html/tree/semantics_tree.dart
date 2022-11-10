@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:seo/html/seo_tag.dart';
-import 'package:seo/html/seo_widget.dart';
+import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
 class SemanticsTree extends SeoTree {
@@ -64,15 +63,13 @@ class SemanticsTree extends SeoTree {
   }
 
   @override
-  Widget process(Seo seo) {
-    final tag = seo.tag;
-
+  Widget process(SeoTag tag, Widget child) {
     if (tag is TextTag) {
       return Semantics(
         label: tag.text,
         container: true,
         excludeSemantics: true,
-        child: seo.child,
+        child: child,
       );
     } else if (tag is ImageTag) {
       return Semantics(
@@ -81,7 +78,7 @@ class SemanticsTree extends SeoTree {
         image: true,
         container: true,
         excludeSemantics: true,
-        child: seo.child,
+        child: child,
       );
     } else if (tag is LinkTag) {
       return Semantics(
@@ -89,11 +86,11 @@ class SemanticsTree extends SeoTree {
         value: tag.href,
         link: true,
         container: true,
-        child: seo.child,
+        child: child,
       );
     }
 
-    return seo.child;
+    throw UnimplementedError('unsupported tag: $tag');
   }
 }
 

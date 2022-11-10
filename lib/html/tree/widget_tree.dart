@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:seo/html/seo_tag.dart';
 import 'package:seo/html/seo_widget.dart';
+import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
 class WidgetTree extends SeoTree {
@@ -34,7 +34,7 @@ class WidgetTree extends SeoTree {
 
   _Node _traverse(Element element) {
     final children = <Element>[];
-    element.visitChildren((element) => children.add(element));
+    element.debugVisitOnstageChildren((element) => children.add(element));
 
     return _Node(
       parent: element,
@@ -46,9 +46,9 @@ class WidgetTree extends SeoTree {
   }
 
   @override
-  Widget process(Seo seo) {
+  Widget process(SeoTag tag, Widget child) {
     _controller.add(null);
-    return seo.child;
+    return child;
   }
 }
 

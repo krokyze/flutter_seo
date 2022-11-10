@@ -21,7 +21,7 @@ class ImageTag extends SeoTag {
 }
 
 class LinkTag extends SeoTag {
-  final String? anchor;
+  final String anchor;
   final String href;
 
   const LinkTag({

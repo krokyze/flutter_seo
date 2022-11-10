@@ -44,6 +44,7 @@ class _Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Seo.link(
+      anchor: post.title,
       href: post.url,
       child: Row(
         children: [

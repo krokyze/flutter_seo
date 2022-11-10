@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seo/html/seo_widget.dart';
+import 'package:seo/seo_tag.dart';
 
 abstract class SeoTree {
   const SeoTree();
@@ -8,7 +8,7 @@ abstract class SeoTree {
 
   SeoTreeNode? traverse();
 
-  Widget process(Seo seo);
+  Widget process(SeoTag tag, Widget child);
 }
 
 abstract class SeoTreeNode {
@@ -34,11 +34,11 @@ abstract class SeoTreeNode {
   }
 
   String link({
-    required String? anchor,
+    required String anchor,
     required String href,
     required String content,
   }) {
-    return '<a href="$href">${(anchor ?? '').isNotEmpty ? '<p>$anchor</p>' : ''}$content</a>';
+    return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
   }
 
   String div({

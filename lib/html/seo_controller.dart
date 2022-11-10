@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:seo/html/seo_widget.dart';
+import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
 class SeoController extends StatefulWidget {
@@ -26,12 +26,13 @@ class SeoController extends StatefulWidget {
 
   static Widget process({
     required BuildContext context,
-    required Seo child,
+    required SeoTag tag,
+    required Widget child,
   }) {
     return context
         .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()!
         .tree
-        .process(child);
+        .process(tag, child);
   }
 }
 
