@@ -13,12 +13,13 @@ jobs:
         shell: bash
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
-          java-version: "11"
+          distribution: 'temurin'
+          java-version: '11'
       - name: cache flutter
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-${{ hashFiles('**/.fvm/fvm_config.json') }}
           path: .fvm/cache
