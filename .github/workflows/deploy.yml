@@ -56,10 +56,6 @@ jobs:
           fvm flutter pub get
           fvm flutter build web --release --web-renderer auto --base-href "/flutter_seo/"
           cp build/web/index.html build/web/404.html
-      # - name: compress
-      #   run: |
-      #     find -E build/web -regex '.*\.(dart.js|wasm|ttf|json|svg)' | xargs brotli -5
-      #     find -E build/web -regex '.*\.(dart.js|wasm|ttf|json|svg)' | xargs gzip -k
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
