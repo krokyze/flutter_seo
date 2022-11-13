@@ -1,39 +1,78 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+# flutter_seo
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+[![pub package](https://img.shields.io/pub/v/seo.svg)](https://pub.dartlang.org/packages/seo)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Flutter package for SEO support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)` widgets into html document tree.
 
-## Features
+&nbsp;
+## Getting Started
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+```yaml
+dependencies:
+  seo: ^0.0.1
 ```
 
-## Additional information
+&nbsp;  
+Wrap your app within `SeoController` which will handle listening to widget tree changes and updating the html document tree. In case your app has authorization and user is logged in you can disable the controller by `enabled: false` as it's redundant to update the html document tree at that state.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:seo/seo.dart';
+
+void main() {
+  runApp(const App());
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SeoController(
+      enabled: true,
+      tree: WidgetTree(context: context),
+      child: MaterialApp(...),
+    );
+  }
+}
+```
+
+&nbsp;  
+There's two available SeoTree implementations:
+* **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverses the tree faster but enables known Flutter SDK issues:
+    * https://github.com/flutter/flutter/issues/90794
+    * https://github.com/flutter/flutter/issues/110284
+
+&nbsp;
+## Sample Usage
+You should wrap all your SEO required widgets accordingly within `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`.
+
+##### Text
+```dart
+Seo.text(
+  text: 'Some text',
+  child: ...,
+); // converts to: <p>Some text</p>
+```
+
+##### Image
+```dart
+Seo.image(
+  src: 'http://www.example.com/image.jpg',
+  alt: 'Some example image',
+  child: ...,
+); // converts to: <img src="http://www.example.com/image.jpg" alt="Some example image"/>
+```
+
+##### Link
+```dart
+Seo.link(
+  href: 'http://www.example.com',
+  anchor: 'Some example',
+  child: ...,
+); // converts to: <a href="http://www.example.com"><p>Some example</p></a>
+```
+
+From personal experience it's more comfortable to create custom [AppText](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_text.dart), [AppImage](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_image.dart), [AppLink](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_link.dart) base widgets and use those in the project.
