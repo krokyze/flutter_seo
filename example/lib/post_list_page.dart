@@ -1,3 +1,4 @@
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
 
@@ -8,9 +9,9 @@ class PostListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.separated(
-        itemCount: 256,
-        itemBuilder: (_, index) => _Card(post: Post(index: index)),
-        separatorBuilder: (_, __) => const SizedBox(height: 32.0),
+        itemCount: 64,
+        itemBuilder: (_, index) => _Card(post: Post(index)),
+        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
       ),
     );
   }
@@ -24,14 +25,15 @@ class Post {
   final String date;
   final String url;
 
-  const Post({
-    required int index,
-  })  : image = 'https://picsum.photos/100/100?$index',
-        title = '$index# TITLE',
-        description = 'TODO: $index# descriptipon',
-        author = 'TODO: $index# AUTHOR',
-        date = 'TODO: $index# DATE',
-        url = '/#/post/$index';
+  Post(int id) : this._(id, Faker(seed: id));
+
+  Post._(int id, Faker faker)
+      : image = 'https://picsum.photos/id/$id/100/100',
+        title = faker.food.dish(),
+        description = faker.lorem.sentence(),
+        author = faker.person.name(),
+        date = faker.date.time(),
+        url = '/#/post/$id';
 }
 
 class _Card extends StatelessWidget {

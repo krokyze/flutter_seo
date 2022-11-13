@@ -43,7 +43,7 @@ class _SeoControllerState extends State<SeoController> {
   @override
   void initState() {
     super.initState();
-    _init();
+    _subscribe();
   }
 
   @override
@@ -51,19 +51,20 @@ class _SeoControllerState extends State<SeoController> {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.enabled != widget.enabled) {
-      _init();
+      _subscribe();
     }
   }
 
-  void _init() {
+  void _subscribe() {
     _subscription?.cancel();
     _subscription = null;
 
-    if (!widget.enabled) return;
-    _subscription = widget.tree
-        .changes()
-        .debounceTime(const Duration(milliseconds: 250))
-        .listen((_) => _update());
+    if (widget.enabled) {
+      _subscription = widget.tree
+          .changes()
+          .debounceTime(const Duration(milliseconds: 250))
+          .listen((_) => _update());
+    }
   }
 
   void _update() async {

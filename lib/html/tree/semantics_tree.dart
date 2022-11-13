@@ -67,8 +67,8 @@ class SemanticsTree extends SeoTree {
     if (tag is TextTag) {
       return Semantics(
         label: tag.text,
-        container: true,
         excludeSemantics: true,
+        container: true,
         child: child,
       );
     } else if (tag is ImageTag) {
@@ -76,8 +76,8 @@ class SemanticsTree extends SeoTree {
         label: tag.alt,
         value: tag.src,
         image: true,
-        container: true,
         excludeSemantics: true,
+        container: true,
         child: child,
       );
     } else if (tag is LinkTag) {

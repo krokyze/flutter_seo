@@ -13,7 +13,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return SeoController(
       enabled: true,
-      // tree: SemanticsTree(),
       tree: WidgetTree(context: context),
       child: const MaterialApp(
         home: PostListPage(),
