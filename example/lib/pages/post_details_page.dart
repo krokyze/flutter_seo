@@ -60,8 +60,8 @@ class PostDetailsPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            post.text,
+                          child: AppText(
+                            text: post.text,
                             style: Theme.of(context).textTheme.subtitle2,
                           ),
                         ),
