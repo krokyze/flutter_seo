@@ -71,7 +71,7 @@ void main() {
     );
   });
 
-  testWidgets('traverse executes <2ms for single widget', (tester) async {
+  testWidgets('traverse executes <3ms for single widget', (tester) async {
     late WidgetTree tree;
     await tester.pumpWidget(TestSeoController(
       tree: (context) {
@@ -88,7 +88,7 @@ void main() {
       return duration.inMicroseconds;
     }).average;
 
-    expect(duration, lessThanOrEqualTo(2000));
+    expect(duration, lessThanOrEqualTo(3000));
     tester.printToConsole('average - ${duration / 1000.0}ms');
   });
 
