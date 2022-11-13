@@ -15,9 +15,9 @@ class Seo extends StatelessWidget {
   Seo.image({
     super.key,
     required String alt,
-    required String url,
+    required String src,
     required this.child,
-  }) : tag = ImageTag(alt: alt, src: url);
+  }) : tag = ImageTag(alt: alt, src: src);
 
   Seo.link({
     super.key,
