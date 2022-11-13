@@ -52,6 +52,7 @@ jobs:
       - name: flutter build
         run: |
           cd example
+          fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
           fvm flutter build web --release --web-renderer auto --base-href "/flutter_seo/"
           cp build/web/index.html build/web/404.html
