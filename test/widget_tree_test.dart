@@ -34,7 +34,7 @@ void main() {
 
     expect(
       html,
-      '<div><noscript><img src="$url" alt="$alt" height="$height" width="$width"></noscript></div>',
+      '<div><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript></div>',
     );
   });
 
@@ -67,7 +67,7 @@ void main() {
 
     expect(
       html,
-      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$url" alt="$alt" height="$height" width="$width"></noscript><p>$text</p></div></div>',
+      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p>$text</p></div></div>',
     );
   });
 

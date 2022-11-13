@@ -12,7 +12,7 @@ class Seo extends StatelessWidget {
   const Seo.image({
     super.key,
     required String alt,
-    required String url,
+    required String src,
     required this.child,
   });
 

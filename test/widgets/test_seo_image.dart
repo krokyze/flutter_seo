@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
 
 const alt = 'Lorem Ipsum';
-const url = 'https://www.image.com';
+const src = 'https://www.image.com';
 const double height = 300;
 const double width = 150;
 
@@ -13,7 +13,7 @@ class TestSeoImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Seo.image(
       alt: alt,
-      url: url,
+      src: src,
       child: const SizedBox(height: height, width: width),
     );
   }
