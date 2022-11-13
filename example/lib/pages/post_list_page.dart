@@ -28,11 +28,12 @@ class _Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const baseHref = '/flutter_seo'; // needed because of --base-href
     final route = PostDetailsRoute(id: post.id);
 
     return Seo.link(
       anchor: post.title,
-      href: route.fullPath,
+      href: baseHref + route.fullPath,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(

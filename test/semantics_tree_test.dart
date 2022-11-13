@@ -92,7 +92,7 @@ void main() {
     tester.printToConsole('average - ${duration / 1000.0}ms');
   });
 
-  testWidgets('traverse executes <20ms for complex page', (tester) async {
+  testWidgets('traverse executes <25ms for complex page', (tester) async {
     await tester.binding.setSurfaceSize(largeScreenSize);
 
     late SemanticsTree tree;
@@ -111,7 +111,7 @@ void main() {
       return duration.inMicroseconds;
     }).average;
 
-    expect(duration, lessThanOrEqualTo(20000));
+    expect(duration, lessThanOrEqualTo(25000));
     tester.printToConsole('average - ${duration / 1000.0}ms');
 
     await tester.binding.setSurfaceSize(null);
