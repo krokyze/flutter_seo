@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:seo/seo.dart';
 import 'package:seo_example/post.dart';
+import 'package:seo_example/widgets/app_image.dart';
+import 'package:seo_example/widgets/app_text.dart';
 
 class PostDetailsPage extends StatelessWidget {
   final int id;
@@ -23,14 +24,11 @@ class PostDetailsPage extends StatelessWidget {
             padding: const EdgeInsets.all(24.0),
             child: Row(
               children: [
-                Seo.image(
+                AppImage(
                   alt: post.title,
                   src: post.imageLarge,
-                  child: Image.network(
-                    post.imageLarge,
-                    width: 256,
-                    height: 256,
-                  ),
+                  width: 256,
+                  height: 256,
                 ),
                 Expanded(
                   child: Padding(
@@ -38,32 +36,23 @@ class PostDetailsPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Seo.text(
+                        AppText(
                           text: post.title,
-                          child: Text(
-                            post.title,
-                            style: Theme.of(context).textTheme.headline5,
-                          ),
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Row(
                             children: [
-                              Seo.text(
+                              AppText(
                                 text: post.author,
-                                child: Text(
-                                  post.author,
-                                  style: Theme.of(context).textTheme.caption,
-                                ),
+                                style: Theme.of(context).textTheme.caption,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
-                                child: Seo.text(
+                                child: AppText(
                                   text: post.date,
-                                  child: Text(
-                                    post.date,
-                                    style: Theme.of(context).textTheme.caption,
-                                  ),
+                                  style: Theme.of(context).textTheme.caption,
                                 ),
                               ),
                             ],
