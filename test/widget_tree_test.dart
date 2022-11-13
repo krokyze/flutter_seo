@@ -1,3 +1,5 @@
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seo/html/tree/widget_tree.dart';
@@ -79,12 +81,18 @@ void main() {
       child: const TestSeoText(),
     ));
 
-    final duration = measure(() => tree.traverse()?.toHtml());
-    expect(duration.inMicroseconds, lessThanOrEqualTo(2000));
-    tester.printToConsole('$duration');
+    final duration =
+        List.generate(10, (_) => measure(() => tree.traverse()?.toHtml()))
+            .mapIndexed((index, duration) {
+      tester.printToConsole('$index - $duration');
+      return duration.inMicroseconds;
+    }).average;
+
+    expect(duration, lessThanOrEqualTo(2000));
+    tester.printToConsole('average - ${duration / 1000.0}ms');
   });
 
-  testWidgets('traverse executes <85ms for complex page', (tester) async {
+  testWidgets('traverse executes <60ms for complex page', (tester) async {
     await tester.binding.setSurfaceSize(largeScreenSize);
 
     late WidgetTree tree;
@@ -96,9 +104,15 @@ void main() {
       child: const TestSeoPage(),
     ));
 
-    final duration = measure(() => tree.traverse()?.toHtml());
-    expect(duration.inMicroseconds, lessThanOrEqualTo(85000));
-    tester.printToConsole('$duration');
+    final duration =
+        List.generate(10, (_) => measure(() => tree.traverse()?.toHtml()))
+            .mapIndexed((index, duration) {
+      tester.printToConsole('$index - $duration');
+      return duration.inMicroseconds;
+    }).average;
+
+    expect(duration, lessThanOrEqualTo(60000));
+    tester.printToConsole('average - ${duration / 1000.0}ms');
 
     await tester.binding.setSurfaceSize(null);
   });
