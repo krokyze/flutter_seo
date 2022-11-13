@@ -6,6 +6,7 @@ import 'base.dart';
 import 'widgets/test_seo_controller.dart';
 import 'widgets/test_seo_image.dart';
 import 'widgets/test_seo_link.dart';
+import 'widgets/test_seo_page.dart';
 import 'widgets/test_seo_text.dart';
 
 void main() {
@@ -67,11 +68,38 @@ void main() {
       '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$url" alt="$alt" height="$height" width="$width"></noscript><p>$text</p></div></div>',
     );
   });
-}
 
-T measure<T>(T Function() measure, {String key = ''}) {
-  final stopwatch = Stopwatch()..start();
-  final result = measure();
-  print('measure($key) executed in ${stopwatch.elapsed}');
-  return result;
+  testWidgets('traverse executes <2ms for single widget', (tester) async {
+    late WidgetTree tree;
+    await tester.pumpWidget(TestSeoController(
+      tree: (context) {
+        tree = WidgetTree(context: context);
+        return tree;
+      },
+      child: const TestSeoText(),
+    ));
+
+    final duration = measure(() => tree.traverse()?.toHtml());
+    expect(duration.inMicroseconds, lessThanOrEqualTo(2000));
+    tester.printToConsole('$duration');
+  });
+
+  testWidgets('traverse executes <70ms for complex page', (tester) async {
+    await tester.binding.setSurfaceSize(largeScreenSize);
+
+    late WidgetTree tree;
+    await tester.pumpWidget(TestSeoController(
+      tree: (context) {
+        tree = WidgetTree(context: context);
+        return tree;
+      },
+      child: const TestSeoPage(),
+    ));
+
+    final duration = measure(() => tree.traverse()?.toHtml());
+    expect(duration.inMicroseconds, lessThanOrEqualTo(70000));
+    tester.printToConsole('$duration');
+
+    await tester.binding.setSurfaceSize(null);
+  });
 }
