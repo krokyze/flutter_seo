@@ -46,7 +46,7 @@ class _Card extends StatelessWidget {
               children: [
                 Seo.image(
                   alt: post.title,
-                  url: post.imageSmall,
+                  src: post.imageSmall,
                   child: Image.network(
                     post.imageSmall,
                     width: 64,

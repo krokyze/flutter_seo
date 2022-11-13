@@ -25,7 +25,7 @@ class PostDetailsPage extends StatelessWidget {
               children: [
                 Seo.image(
                   alt: post.title,
-                  url: post.imageLarge,
+                  src: post.imageLarge,
                   child: Image.network(
                     post.imageLarge,
                     width: 256,
