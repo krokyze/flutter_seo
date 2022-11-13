@@ -3,7 +3,7 @@ name: Deploy
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [main]
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -51,6 +51,7 @@ jobs:
           fvm install
       - name: flutter build
         run: |
+          cd example
           fvm flutter pub get
           fvm flutter build web --release --web-renderer auto --base-href "/flutter_seo/"
           cp build/web/index.html build/web/404.html
@@ -61,7 +62,7 @@ jobs:
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'build/web'
+          path: 'example/build/web'
       - name: deploy github page
         id: deployment
         uses: actions/deploy-pages@v1
