@@ -84,7 +84,7 @@ void main() {
     tester.printToConsole('$duration');
   });
 
-  testWidgets('traverse executes <70ms for complex page', (tester) async {
+  testWidgets('traverse executes <85ms for complex page', (tester) async {
     await tester.binding.setSurfaceSize(largeScreenSize);
 
     late WidgetTree tree;
@@ -97,7 +97,7 @@ void main() {
     ));
 
     final duration = measure(() => tree.traverse()?.toHtml());
-    expect(duration.inMicroseconds, lessThanOrEqualTo(70000));
+    expect(duration.inMicroseconds, lessThanOrEqualTo(85000));
     tester.printToConsole('$duration');
 
     await tester.binding.setSurfaceSize(null);
