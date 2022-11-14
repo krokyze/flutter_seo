@@ -33,6 +33,7 @@ jobs:
           distribution: "temurin"
           java-version: "11"
       - uses: actions/configure-pages@v2
+        id: configure
       - name: cache flutter
         uses: actions/cache@v3
         with:
@@ -41,7 +42,7 @@ jobs:
       - name: add brew to $PATH
         run: |
           echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
-          echo ${{ steps.deployment.outputs.base_path }}
+          echo ${{ steps.configure.outputs.base_path }}
       - name: fvm install
         run: |
           brew tap leoafarias/fvm
