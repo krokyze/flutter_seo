@@ -2,7 +2,6 @@
 import 'dart:html';
 import 'dart:ui';
 
-// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 const largeScreenSize = Size(1024, 2048 * 128);
