@@ -55,7 +55,7 @@ jobs:
           cd example
           fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
-          fvm flutter build web --release --web-renderer auto --base-href ${{ steps.configure.outputs.base_path }}
+          fvm flutter build web --release --web-renderer auto --base-href "${{ steps.configure.outputs.base_path }}/"
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
