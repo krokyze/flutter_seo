@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:seo/seo.dart';
 import 'package:seo_example/main_router.dart';
 
 void main() {
-  usePathUrlStrategy();
   runApp(App());
 }
 

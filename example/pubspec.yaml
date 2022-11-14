@@ -6,8 +6,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
   faker: ^2.0.0
   auto_route: ^5.0.2
   seo:
