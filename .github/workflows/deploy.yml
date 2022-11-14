@@ -33,6 +33,7 @@ jobs:
           distribution: "temurin"
           java-version: "11"
       - uses: actions/configure-pages@v2
+        id: configure
       - name: cache flutter
         uses: actions/cache@v3
         with:
@@ -54,7 +55,7 @@ jobs:
           cd example
           fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
-          fvm flutter build web --release --web-renderer auto --base-href "/flutter_seo/"
+          fvm flutter build web --release --web-renderer auto --base-href "${{ steps.configure.outputs.base_path }}/"
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
