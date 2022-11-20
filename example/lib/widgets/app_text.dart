@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:seo/seo.dart';
 
 class AppText extends StatelessWidget {

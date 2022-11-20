@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
 
 class AppLink extends StatelessWidget {
