@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krokyze.github.io/flutter_seo/sitemap.xml
