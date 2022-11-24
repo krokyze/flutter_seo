@@ -4,6 +4,7 @@ import 'package:seo_example/main_router.dart';
 import 'package:seo_example/post.dart';
 import 'package:seo_example/widgets/app_image.dart';
 import 'package:seo_example/widgets/app_link.dart';
+import 'package:seo_example/widgets/app_meta.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
 class PostListPage extends StatelessWidget {
@@ -12,10 +13,14 @@ class PostListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-        itemCount: 64,
-        itemBuilder: (_, id) => _Card(post: Post(id)),
-        separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+      body: AppMeta(
+        title: 'Flutter SEO Example',
+        description: 'This is a Flutter example webpage using seo package.',
+        child: ListView.separated(
+          itemCount: 64,
+          itemBuilder: (_, id) => _Card(post: Post(id)),
+          separatorBuilder: (_, __) => const SizedBox(height: 16.0),
+        ),
       ),
     );
   }

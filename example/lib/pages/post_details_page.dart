@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:seo_example/post.dart';
 import 'package:seo_example/widgets/app_image.dart';
+import 'package:seo_example/widgets/app_meta.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
 class PostDetailsPage extends StatelessWidget {
@@ -17,62 +18,67 @@ class PostDetailsPage extends StatelessWidget {
     final post = Post(id);
 
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            color: Colors.white,
-            padding: const EdgeInsets.all(24.0),
-            child: Row(
-              children: [
-                AppImage(
-                  alt: post.title,
-                  src: post.imageLarge,
-                  width: 256,
-                  height: 256,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 24.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(
-                          text: post.title,
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Row(
-                            children: [
-                              AppText(
-                                text: post.author,
-                                style: Theme.of(context).textTheme.caption,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: AppText(
-                                  text: post.date,
+      body: AppMeta(
+        title: post.title,
+        description: post.text,
+        image: post.imageLarge,
+        child: Column(
+          children: [
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.all(24.0),
+              child: Row(
+                children: [
+                  AppImage(
+                    alt: post.title,
+                    src: post.imageLarge,
+                    width: 256,
+                    height: 256,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                            text: post.title,
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Row(
+                              children: [
+                                AppText(
+                                  text: post.author,
                                   style: Theme.of(context).textTheme.caption,
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: AppText(
+                                    text: post.date,
+                                    style: Theme.of(context).textTheme.caption,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: AppText(
-                            text: post.text,
-                            style: Theme.of(context).textTheme.subtitle2,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: AppText(
+                              text: post.text,
+                              style: Theme.of(context).textTheme.subtitle2,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

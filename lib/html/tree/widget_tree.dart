@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
+import 'package:seo/seo_html.dart';
 import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
@@ -75,39 +76,55 @@ class _Node with SeoTreeNode {
       return 'image: ${tag.alt} | url: ${tag.src}';
     } else if (tag is LinkTag) {
       return 'link: ${tag.anchor} | url: ${tag.href}';
+    } else if (tag is MetaTags) {
+      return 'meta: ${tag.tags.length}';
     } else {
       return 'div';
     }
   }
 
   @override
-  String toHtml() {
+  SeoHtml toHtml() {
     final widget = parent?.widget;
     final tag = widget is Seo ? widget.tag : null;
-    final content = children.map((e) => e.toHtml()).join();
+    final html = children
+        .map((e) => e.toHtml())
+        .fold(const SeoHtml(head: '', body: ''), (h1, h2) => h1 + h2);
 
     if (tag is TextTag) {
-      return text(
-        text: tag.text,
-        content: content,
+      return html.copyWith(
+        body: text(
+          text: tag.text,
+          content: html.body,
+        ),
       );
     } else if (tag is ImageTag) {
-      return image(
-        src: tag.src,
-        alt: tag.alt,
-        height: parent?.size?.height,
-        width: parent?.size?.width,
-        content: content,
+      return html.copyWith(
+        body: image(
+          src: tag.src,
+          alt: tag.alt,
+          height: parent?.size?.height,
+          width: parent?.size?.width,
+          content: html.body,
+        ),
       );
     } else if (tag is LinkTag) {
-      return link(
-        anchor: tag.anchor,
-        href: tag.href,
-        content: content,
+      return html.copyWith(
+        body: link(
+          anchor: tag.anchor,
+          href: tag.href,
+          content: html.body,
+        ),
+      );
+    } else if (tag is MetaTags) {
+      return html.copyWith(
+        head: html.head + tag.tags.map((tag) => meta(tag: tag)).join('\n'),
       );
     } else {
-      return div(
-        content: content,
+      return html.copyWith(
+        body: div(
+          content: html.body,
+        ),
       );
     }
   }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:seo/seo.dart';
+import 'package:seo/seo_html.dart';
 import 'package:seo/seo_tag.dart';
 
 abstract class SeoTree {
@@ -14,7 +16,7 @@ abstract class SeoTree {
 abstract class SeoTreeNode {
   bool get seo;
 
-  String toHtml();
+  SeoHtml toHtml();
 
   String text({
     required String text,
@@ -39,6 +41,18 @@ abstract class SeoTreeNode {
     required String content,
   }) {
     return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
+  }
+
+  String meta({
+    required MetaTag tag,
+  }) {
+    if (tag is MetaNameTag) {
+      return '<meta name="${tag.name}" content="${tag.content}" flt-seo>';
+    } else if (tag is MetaPropertyTag) {
+      return '<meta property="${tag.property}" content="${tag.content}" flt-seo>';
+    }
+
+    throw UnimplementedError('unsupported tag: $tag');
   }
 
   String div({

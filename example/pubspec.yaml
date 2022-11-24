@@ -8,6 +8,7 @@ dependencies:
     sdk: flutter
   faker: ^2.0.0
   auto_route: ^5.0.2
+  visibility_detector: ^0.3.3
   seo:
     path: ../
 
