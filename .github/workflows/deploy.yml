@@ -52,9 +52,9 @@ jobs:
           fvm install
       - name: update base_url
         run: |
-          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' README.md
-          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' example/web/robots.txt
-          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' example/web/sitemap.xml
+          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' README.md
+          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' example/web/robots.txt
+          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' example/web/sitemap.xml
       - name: flutter build
         run: |
           cd example
