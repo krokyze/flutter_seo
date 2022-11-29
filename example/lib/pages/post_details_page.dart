@@ -21,7 +21,7 @@ class PostDetailsPage extends StatelessWidget {
       body: AppMeta(
         title: post.title,
         description: post.text,
-        image: post.imageLarge,
+        author: post.author,
         child: Column(
           children: [
             Container(

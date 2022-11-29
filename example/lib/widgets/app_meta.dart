@@ -6,7 +6,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 class AppMeta extends StatefulWidget {
   final String title;
   final String description;
-  final String? image;
+  final String? author;
 
   final Widget child;
 
@@ -14,7 +14,7 @@ class AppMeta extends StatefulWidget {
     super.key,
     required this.title,
     required this.description,
-    this.image,
+    this.author,
     required this.child,
   });
 
@@ -48,25 +48,10 @@ class _AppMetaState extends State<AppMeta> {
       },
       child: Seo.meta(
         tags: [
-          // Primary Meta Tags
           MetaNameTag(name: 'title', content: widget.title),
           MetaNameTag(name: 'description', content: widget.description),
-
-          // Open Graph / Facebook
-          MetaPropertyTag(property: 'og:title', content: widget.title),
-          MetaPropertyTag(
-              property: 'og:description', content: widget.description),
-          MetaPropertyTag(property: 'og:url', content: Uri.base.toString()),
-          if (widget.image != null)
-            MetaPropertyTag(property: 'og:image', content: widget.image!),
-          const MetaPropertyTag(property: 'og:type', content: 'article'),
-
-          // Twitter
-          MetaNameTag(name: 'twitter:title', content: widget.title),
-          MetaNameTag(name: 'twitter:description', content: widget.description),
-          if (widget.image != null)
-            MetaNameTag(name: 'twitter:image', content: widget.image!),
-          const MetaNameTag(name: 'twitter:card', content: 'summary'),
+          if (widget.author != null)
+            MetaNameTag(name: 'author', content: widget.author!),
         ],
         child: widget.child,
       ),

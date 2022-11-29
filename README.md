@@ -13,7 +13,7 @@ See demo here: https://krokyze.github.io/flutter_seo
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.1
+  seo: ^0.0.2
 ```
 
 &nbsp;  
