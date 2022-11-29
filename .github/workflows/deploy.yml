@@ -50,10 +50,11 @@ jobs:
         run: |
           fvm config --cache-path .fvm/cache
           fvm install
-      - name: Dump steps
-        env:
-          STEPS_CONTEXT: ${{ toJson(steps) }}
-        run: echo "$STEPS_CONTEXT"
+      - name: update base_url
+        run: |
+          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' README.md
+          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' example/web/robots.txt
+          sed -i 's/base_url/${{ steps.configure.outputs.base_url }}/g' example/web/sitemap.xml
       - name: flutter build
         run: |
           cd example
