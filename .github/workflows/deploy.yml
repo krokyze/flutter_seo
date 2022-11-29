@@ -51,10 +51,11 @@ jobs:
           fvm config --cache-path .fvm/cache
           fvm install
       - name: update base_url
+        with:
+          path: 'example/web'
         run: |
-          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' README.md
-          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' example/web/robots.txt
-          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' example/web/sitemap.xml
+          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' robots.txt
+          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' sitemap.xml
       - name: flutter build
         run: |
           cd example

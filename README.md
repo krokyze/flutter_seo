@@ -5,7 +5,7 @@
 
 Flutter package for SEO support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)` widgets into html document tree.
 
-See demo here: base_url
+See demo here: https://seo.krokyze.dev
 
 &nbsp;
 ## Getting Started
