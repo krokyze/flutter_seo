@@ -50,6 +50,10 @@ jobs:
         run: |
           fvm config --cache-path .fvm/cache
           fvm install
+      - name: Dump steps
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
       - name: flutter build
         run: |
           cd example
