@@ -22,7 +22,7 @@ abstract class SeoTreeNode {
     required String text,
     required String content,
   }) {
-    return '<p>$text</p>$content';
+    return '<p style="color:black;">$text</p>$content';
   }
 
   String image({
