@@ -47,7 +47,7 @@ void main() {
 
     expect(
       bodyHtml,
-      '<div><div><a href="$href"><p style="color:black;">$anchor</p></a></div></div>',
+      '<div><div><a href="$href"><p>$anchor</p></a></div></div>',
     );
   });
 
@@ -77,7 +77,7 @@ void main() {
 
     expect(
       bodyHtml,
-      '<div><div><a href="$href"><p style="color:black;">$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p style="color:black;">$text</p></div></div>',
+      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p style="color:black;">$text</p></div></div>',
     );
   });
 
