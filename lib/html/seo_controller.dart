@@ -127,7 +127,8 @@ class _SeoControllerState extends State<SeoController> {
       validator: NodeValidatorBuilder()
         ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
         ..allowCustomElement('flt-seo')
-        ..allowCustomElement('noscript'),
+        ..allowCustomElement('noscript')
+        ..allowCustomElement('p', attributes: ['style']),
     );
   }
 
