@@ -56,7 +56,7 @@ You should wrap all your SEO required widgets accordingly within `Seo.text(...)`
 Seo.text(
   text: 'Some text',
   child: ...,
-); // converts to: <p>Some text</p>
+); // converts to: <p style="color:black;">Some text</p>
 ```
 
 ##### Image
@@ -74,7 +74,7 @@ Seo.link(
   href: 'http://www.example.com',
   anchor: 'Some example',
   child: ...,
-); // converts to: <a href="http://www.example.com"><p>Some example</p></a>
+); // converts to: <a href="http://www.example.com"><p style="color:black;">Some example</p></a>
 ```
 
 From personal experience it's more comfortable to create custom [AppText](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_text.dart), [AppImage](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_image.dart), [AppLink](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_link.dart) base widgets and use those in the project.

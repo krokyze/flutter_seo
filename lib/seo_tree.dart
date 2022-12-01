@@ -40,7 +40,7 @@ abstract class SeoTreeNode {
     required String href,
     required String content,
   }) {
-    return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
+    return '<div><a href="$href"><p style="color:black;">$anchor</p></a>$content</div>';
   }
 
   String meta({
