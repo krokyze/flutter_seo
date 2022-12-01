@@ -1,4 +1,3 @@
-
 # flutter_seo
 
 [![pub package](https://img.shields.io/pub/v/seo.svg)](https://pub.dartlang.org/packages/seo)
@@ -51,7 +50,7 @@ There's two available SeoTree implementations:
 ## Sample Usage
 You should wrap all your SEO required widgets accordingly within `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`.
 
-##### Text
+#### Text
 ```dart
 Seo.text(
   text: 'Some text',
@@ -59,7 +58,7 @@ Seo.text(
 ); // converts to: <p style="color:black;">Some text</p>
 ```
 
-##### Image
+#### Image
 ```dart
 Seo.image(
   src: 'http://www.example.com/image.jpg',
@@ -68,7 +67,7 @@ Seo.image(
 ); // converts to: <img src="http://www.example.com/image.jpg" alt="Some example image"/>
 ```
 
-##### Link
+#### Link
 ```dart
 Seo.link(
   href: 'http://www.example.com',
@@ -78,3 +77,16 @@ Seo.link(
 ```
 
 From personal experience it's more comfortable to create custom [AppText](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_text.dart), [AppImage](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_image.dart), [AppLink](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_link.dart) base widgets and use those in the project.
+
+&nbsp;
+## Tips
+
+#### Force HTML renderer for bots
+To improve initial page load speed for bots you can force HTML renderer which is 2MB smaller in download size than CanvasKit. Full example [here](https://github.com/krokyze/flutter_seo/blob/main/example/web/index.html).
+```html
+<script>
+  if (bot) {
+    window.flutterWebRenderer = "html";
+  }
+</script>
+```
