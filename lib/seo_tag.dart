@@ -1,3 +1,5 @@
+import 'package:seo/meta_tag.dart';
+
 abstract class SeoTag {
   const SeoTag();
 }
@@ -27,5 +29,13 @@ class LinkTag extends SeoTag {
   const LinkTag({
     required this.anchor,
     required this.href,
+  });
+}
+
+class MetaTags extends SeoTag {
+  final List<MetaTag> tags;
+
+  const MetaTags({
+    required this.tags,
   });
 }

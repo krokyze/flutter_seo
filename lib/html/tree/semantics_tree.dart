@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:seo/seo_html.dart';
 import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
@@ -88,6 +89,9 @@ class SemanticsTree extends SeoTree {
         container: true,
         child: child,
       );
+    } else if (tag is MetaTags) {
+      // Semantics doesn't support a way to pass meta tag info to SemanticsNode
+      return child;
     }
 
     throw UnimplementedError('unsupported tag: $tag');
@@ -135,31 +139,41 @@ class _Node with SeoTreeNode {
   }
 
   @override
-  String toHtml() {
-    final content = children.map((e) => e.toHtml()).join();
+  SeoHtml toHtml() {
+    final html = children
+        .map((e) => e.toHtml())
+        .fold(const SeoHtml(head: '', body: ''), (h1, h2) => h1 + h2);
 
     if (_link) {
-      return link(
-        anchor: parent.label,
-        href: parent.value,
-        content: content,
+      return html.copyWith(
+        body: link(
+          anchor: parent.label,
+          href: parent.value,
+          content: html.body,
+        ),
       );
     } else if (_image) {
-      return image(
-        src: parent.value,
-        alt: parent.label,
-        height: parent.rect.height,
-        width: parent.rect.width,
-        content: content,
+      return html.copyWith(
+        body: image(
+          src: parent.value,
+          alt: parent.label,
+          height: parent.rect.height,
+          width: parent.rect.width,
+          content: html.body,
+        ),
       );
     } else if (_text) {
-      return text(
-        text: parent.label,
-        content: content,
+      return html.copyWith(
+        body: text(
+          text: parent.label,
+          content: html.body,
+        ),
       );
     } else {
-      return div(
-        content: content,
+      return html.copyWith(
+        body: div(
+          content: html.body,
+        ),
       );
     }
   }

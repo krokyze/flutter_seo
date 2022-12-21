@@ -5,6 +5,7 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:seo/seo_html.dart';
 import 'package:seo/seo_tag.dart';
 import 'package:seo/seo_tree.dart';
 
@@ -38,7 +39,8 @@ class SeoController extends StatefulWidget {
 
 class _SeoControllerState extends State<SeoController> {
   StreamSubscription? _subscription;
-  int? _hash;
+  int? _headHash;
+  int? _bodyHash;
 
   @override
   void initState() {
@@ -75,14 +77,45 @@ class _SeoControllerState extends State<SeoController> {
       if (!mounted) return;
     }
 
+    final html = widget.tree.traverse()?.toHtml();
+    if (html != null) {
+      _updateHead(html);
+      _updateBody(html);
+    }
+  }
+
+  void _updateHead(SeoHtml html) {
+    final head = document.head;
+    if (head == null) return;
+
+    final hash = html.head.hashCode;
+    if (_headHash == hash) return;
+    _headHash = hash;
+
+    head.children
+        .where((element) => element.attributes.containsKey('flt-seo'))
+        .forEach((element) => element.remove());
+
+    head.insertAdjacentHtml(
+      'beforeEnd',
+      html.head,
+      validator: NodeValidatorBuilder()
+        ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
+        ..allowCustomElement('title', attributes: ['flt-seo'])
+        ..allowCustomElement(
+          'meta',
+          attributes: ['name', 'property', 'content', 'flt-seo'],
+        ),
+    );
+  }
+
+  void _updateBody(SeoHtml html) {
     final body = document.body;
     if (body == null) return;
 
-    final html = widget.tree.traverse()?.toHtml() ?? '';
-    final hash = html.hashCode;
-
-    if (_hash == hash) return;
-    _hash = hash;
+    final hash = html.body.hashCode;
+    if (_bodyHash == hash) return;
+    _bodyHash = hash;
 
     body.children
         .where((element) => element.localName == 'flt-seo')
@@ -90,11 +123,12 @@ class _SeoControllerState extends State<SeoController> {
 
     body.insertAdjacentHtml(
       'afterBegin',
-      '<flt-seo>$html</flt-seo>',
+      '<flt-seo>${html.body}</flt-seo>',
       validator: NodeValidatorBuilder()
         ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
         ..allowCustomElement('flt-seo')
-        ..allowCustomElement('noscript'),
+        ..allowCustomElement('noscript')
+        ..allowCustomElement('p', attributes: ['style']),
     );
   }
 

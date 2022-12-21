@@ -19,8 +19,8 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
-      '<div><p>$text</p></div>',
+      bodyHtml,
+      '<div><p style="color:black;">$text</p></div>',
     );
   });
 
@@ -32,7 +32,7 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
+      bodyHtml,
       '<div><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript></div>',
     );
   });
@@ -45,7 +45,7 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
+      bodyHtml,
       '<div><div><a href="$href"><p>$anchor</p></a></div></div>',
     );
   });
@@ -65,8 +65,8 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
-      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p>$text</p></div></div>',
+      bodyHtml,
+      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p style="color:black;">$text</p></div></div>',
     );
   });
 

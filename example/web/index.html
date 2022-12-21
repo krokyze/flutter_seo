@@ -5,13 +5,9 @@
 
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
-    <meta name="description" content="Example for Flutter SEO support." />
-    <meta name="google-site-verification" content="uKS62UaQxAmlUnaLl-m2BiFYlEbX272bTROF-cOqVqs" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png" />
-
-    <title>Flutter SEO</title>
 
     <script>
       // The value below is injected by flutter build, do not touch.
@@ -21,6 +17,16 @@
     <script src="flutter.js" defer></script>
   </head>
   <body>
+    <script>
+      import("./scripts/botd-1.1.0.js")
+        .then((botd) => botd.load())
+        .then((botd) => botd.detect())
+        .then(function (result) {
+          if (result.bot) {
+            window.flutterWebRenderer = "html";
+          }
+        });
+    </script>
     <script>
       window.addEventListener("load", function (ev) {
         // Download main.dart.js

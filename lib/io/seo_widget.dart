@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seo/meta_tag.dart';
 
 class Seo extends StatelessWidget {
   final Widget child;
@@ -20,6 +21,12 @@ class Seo extends StatelessWidget {
     super.key,
     required String anchor,
     required String href,
+    required this.child,
+  });
+
+  const Seo.meta({
+    super.key,
+    required List<MetaTag> tags,
     required this.child,
   });
 

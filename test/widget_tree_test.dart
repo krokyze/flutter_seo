@@ -7,6 +7,7 @@ import 'base.dart';
 import 'widgets/test_seo_controller.dart';
 import 'widgets/test_seo_image.dart';
 import 'widgets/test_seo_link.dart';
+import 'widgets/test_seo_meta.dart';
 import 'widgets/test_seo_page.dart';
 import 'widgets/test_seo_text.dart';
 
@@ -19,8 +20,8 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
-      '<div><p>$text</p></div>',
+      bodyHtml,
+      '<div><p style="color:black;">$text</p></div>',
     );
   });
 
@@ -32,7 +33,7 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
+      bodyHtml,
       '<div><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript></div>',
     );
   });
@@ -45,7 +46,7 @@ void main() {
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
+      bodyHtml,
       '<div><div><a href="$href"><p>$anchor</p></a></div></div>',
     );
   });
@@ -53,20 +54,30 @@ void main() {
   testWidgets('multiple Seo\'s are processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
-      child: TestSeoLink(
-        child: Row(
-          children: const [
-            TestSeoImage(),
-            TestSeoText(),
-          ],
+      child: TestSeoMeta(
+        child: TestSeoLink(
+          child: Row(
+            children: const [
+              TestSeoImage(),
+              TestSeoText(),
+            ],
+          ),
         ),
       ),
     ));
     await tester.pumpAndSettle(debounceTime);
 
     expect(
-      html,
-      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p>$text</p></div></div>',
+      headHtml,
+      [
+        '<meta name="$name" content="$title" flt-seo="">',
+        '<meta property="$property" content="$title" flt-seo="">',
+      ].join('\n'),
+    );
+
+    expect(
+      bodyHtml,
+      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"></noscript><p style="color:black;">$text</p></div></div>',
     );
   });
 

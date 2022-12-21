@@ -8,10 +8,14 @@ const largeScreenSize = Size(1024, 2048 * 128);
 
 const debounceTime = Duration(milliseconds: 250);
 
-Element? get element => document.body?.children
-    .firstWhereOrNull((element) => element.localName == 'flt-seo');
+String? get headHtml => document.head?.children
+    .where((element) => element.attributes.containsKey('flt-seo'))
+    .map((element) => element.outerHtml)
+    .join('\n');
 
-String? get html => element?.innerHtml;
+String? get bodyHtml => document.body?.children
+    .firstWhereOrNull((element) => element.localName == 'flt-seo')
+    ?.innerHtml;
 
 Duration measure<T>(T Function() measure) {
   final stopwatch = Stopwatch()..start();
