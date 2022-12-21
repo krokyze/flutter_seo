@@ -17,7 +17,7 @@ class AppLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Seo.link(
       anchor: anchor,
-      href: '/flutter_seo/#$href', // /flutter_seo needed because of --base-href
+      href: '/#$href',
       child: child,
     );
   }
