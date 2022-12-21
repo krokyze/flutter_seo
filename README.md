@@ -85,7 +85,7 @@ Seo.meta(
   child: ...,
 ); // converts to: <meta name="title" content="Flutter SEO Example">
 ```
-> **WARNING**: Open Graph (og:title, og:description, etc.) and Twitter Card (twitter:title, twitter:description, etc.) will not work. [Read more](https://github.com/krokyze/flutter_seo#supporting-open-graph-twitter-card-tags).
+> **WARNING**: Open Graph (og:title, og:description, etc.) and Twitter Card (twitter:title, twitter:description, etc.) will not work. [Read more](#supporting-open-graph-twitter-card-tags).
 
 &nbsp;
 ## Tips
