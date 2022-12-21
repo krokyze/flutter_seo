@@ -26,13 +26,6 @@ class _AppMetaState extends State<AppMeta> {
   final _key = UniqueKey();
 
   @override
-  void initState() {
-    super.initState();
-    // initially build Uri.base is the previous path
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
       key: _key,
