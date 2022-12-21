@@ -91,7 +91,7 @@ Seo.meta(
 ## Tips
 
 #### Force HTML renderer for bots
-To improve initial page load speed for bots you can force HTML renderer which is 2MB smaller in download size than CanvasKit. Full example [here](https://github.com/krokyze/flutter_seo/blob/main/example/web/index.html).
+To improve initial page load speed for bots you can force HTML renderer which is 2MB smaller in download size than CanvasKit. Full example [here](https://github.com/krokyze/flutter_seo/blob/main/example/web/index.html#L20..L29).
 ```html
 <script>
   if (bot) {
