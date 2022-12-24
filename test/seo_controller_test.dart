@@ -3,7 +3,7 @@ import 'package:seo/html/tree/widget_tree.dart';
 
 import 'base.dart';
 import 'widgets/test_seo_controller.dart';
-import 'widgets/test_seo_meta.dart';
+import 'widgets/test_seo_head.dart';
 import 'widgets/test_seo_text.dart';
 
 void main() {
@@ -11,7 +11,7 @@ void main() {
     await tester.pumpWidget(TestSeoController(
       enabled: false,
       tree: (context) => WidgetTree(context: context),
-      child: const TestSeoMeta(child: TestSeoText()),
+      child: const TestSeoHead(child: TestSeoText()),
     ));
     await tester.pumpAndSettle(debounceTime);
 
@@ -23,7 +23,7 @@ void main() {
     await tester.pumpWidget(TestSeoController(
       enabled: true,
       tree: (context) => WidgetTree(context: context),
-      child: const TestSeoMeta(child: TestSeoText()),
+      child: const TestSeoHead(child: TestSeoText()),
     ));
     await tester.pumpAndSettle(debounceTime);
 

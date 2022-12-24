@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seo/meta_tag.dart';
+import 'package:seo/head_tag.dart';
 
 class Seo extends StatelessWidget {
   final Widget child;
@@ -24,9 +24,9 @@ class Seo extends StatelessWidget {
     required this.child,
   });
 
-  const Seo.meta({
+  const Seo.head({
     super.key,
-    required List<MetaTag> tags,
+    required List<HeadTag> tags,
     required this.child,
   });
 

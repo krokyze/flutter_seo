@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:seo/seo_html.dart';
-import 'package:seo/seo_tag.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_html.dart';
+import 'package:seo/src/seo_tag.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class SemanticsTree extends SeoTree {
   PipelineOwner get _pipelineOwner => WidgetsBinding.instance.pipelineOwner;
@@ -89,8 +89,8 @@ class SemanticsTree extends SeoTree {
         container: true,
         child: child,
       );
-    } else if (tag is MetaTags) {
-      // Semantics doesn't support a way to pass meta tag info to SemanticsNode
+    } else if (tag is HeadTags) {
+      // Semantics doesn't support a way to pass head tag info to SemanticsNode
       return child;
     }
 

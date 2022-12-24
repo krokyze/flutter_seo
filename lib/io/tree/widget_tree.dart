@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:seo/seo_tag.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_tag.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class WidgetTree extends SeoTree {
   WidgetTree({

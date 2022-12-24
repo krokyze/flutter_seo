@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
 
-const anchor = 'Lorem Ipsum';
-const href = 'https://www.href.com';
+import '../const.dart';
 
 class TestSeoLink extends StatelessWidget {
   final Widget? child;

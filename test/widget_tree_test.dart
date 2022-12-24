@@ -4,10 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:seo/html/tree/widget_tree.dart';
 
 import 'base.dart';
+import 'const.dart';
 import 'widgets/test_seo_controller.dart';
+import 'widgets/test_seo_head.dart';
 import 'widgets/test_seo_image.dart';
 import 'widgets/test_seo_link.dart';
-import 'widgets/test_seo_meta.dart';
 import 'widgets/test_seo_page.dart';
 import 'widgets/test_seo_text.dart';
 
@@ -54,7 +55,7 @@ void main() {
   testWidgets('multiple Seo\'s are processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
-      child: TestSeoMeta(
+      child: TestSeoHead(
         child: TestSeoLink(
           child: Row(
             children: const [
@@ -70,8 +71,12 @@ void main() {
     expect(
       headHtml,
       [
-        '<meta name="$name" content="$title" flt-seo="">',
-        '<meta property="$property" content="$title" flt-seo="">',
+        '<meta name="$name" content="$content" flt-seo="">',
+        '<meta http-equiv="$httpEquiv" content="$content" flt-seo="">',
+        '<meta name="$name" http-equiv="$httpEquiv" content="$content" flt-seo="">',
+        '<link title="$title" href="$href" flt-seo="">',
+        '<link type="$type" media="$media" flt-seo="">',
+        '<link title="$title" rel="$rel" type="$type" href="$href" media="$media" flt-seo="">',
       ].join('\n'),
     );
 

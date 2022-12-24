@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
 
-const text =
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+import '../const.dart';
 
 class TestSeoText extends StatelessWidget {
   const TestSeoText({super.key});

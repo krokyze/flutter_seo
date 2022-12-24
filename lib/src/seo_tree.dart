@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:seo/seo.dart';
-import 'package:seo/seo_html.dart';
-import 'package:seo/seo_tag.dart';
+import 'package:seo/head_tag.dart' as head_tag;
+import 'package:seo/src/seo_html.dart';
+import 'package:seo/src/seo_tag.dart';
 
 abstract class SeoTree {
   const SeoTree();
@@ -43,13 +43,35 @@ abstract class SeoTreeNode {
     return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
   }
 
-  String meta({
-    required MetaTag tag,
+  String head({
+    required head_tag.HeadTag tag,
   }) {
-    if (tag is MetaNameTag) {
-      return '<meta name="${tag.name}" content="${tag.content}" flt-seo>';
-    } else if (tag is MetaPropertyTag) {
-      return '<meta property="${tag.property}" content="${tag.content}" flt-seo>';
+    if (tag is head_tag.MetaTag) {
+      final attributes = {
+        'name': tag.name,
+        'http-equiv': tag.httpEquiv,
+        'content': tag.content,
+      }
+          .entries
+          .where((entry) => entry.value != null)
+          .map((entry) => '${entry.key}="${entry.value}"')
+          .join(' ');
+
+      return '<meta $attributes flt-seo>';
+    } else if (tag is head_tag.LinkTag) {
+      final attributes = {
+        'title': tag.title,
+        'rel': tag.rel,
+        'type': tag.type,
+        'href': tag.href,
+        'media': tag.media,
+      }
+          .entries
+          .where((entry) => entry.value != null)
+          .map((entry) => '${entry.key}="${entry.value}"')
+          .join(' ');
+
+      return '<link $attributes flt-seo>';
     }
 
     throw UnimplementedError('unsupported tag: $tag');

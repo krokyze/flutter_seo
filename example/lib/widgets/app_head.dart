@@ -3,14 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:seo/seo.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-class AppMeta extends StatefulWidget {
+class AppHead extends StatefulWidget {
   final String title;
   final String description;
   final String? author;
 
   final Widget child;
 
-  const AppMeta({
+  const AppHead({
     super.key,
     required this.title,
     required this.description,
@@ -19,10 +19,10 @@ class AppMeta extends StatefulWidget {
   });
 
   @override
-  State<AppMeta> createState() => _AppMetaState();
+  State<AppHead> createState() => _AppHeadState();
 }
 
-class _AppMetaState extends State<AppMeta> {
+class _AppHeadState extends State<AppHead> {
   final _key = UniqueKey();
 
   @override
@@ -39,12 +39,12 @@ class _AppMetaState extends State<AppMeta> {
           );
         }
       },
-      child: Seo.meta(
+      child: Seo.head(
         tags: [
-          MetaNameTag(name: 'title', content: widget.title),
-          MetaNameTag(name: 'description', content: widget.description),
+          MetaTag(name: 'title', content: widget.title),
+          MetaTag(name: 'description', content: widget.description),
           if (widget.author != null)
-            MetaNameTag(name: 'author', content: widget.author!),
+            MetaTag(name: 'author', content: widget.author),
         ],
         child: widget.child,
       ),
