@@ -76,14 +76,15 @@ Seo.link(
 ); // converts to: <a href="http://www.example.com"><p>Some example</p></a>
 ```
 
-#### Meta
+#### Head
 ```dart
 Seo.head(
   tags: [
-    MetaNameTag(name: 'title', content: 'Flutter SEO Example'),
+    MetaTag(name: 'title', content: 'Flutter SEO Example'),
+    LinkTag(rel: 'canonical', href: 'http://www.example.com'),
   ],
   child: ...,
-); // converts to: <meta name="title" content="Flutter SEO Example">
+); // converts to: <meta name="title" content="Flutter SEO Example"><link rel="canonical" href="http://www.example.com" />
 ```
 > **WARNING**: Open Graph (og:title, og:description, etc.) and Twitter Card (twitter:title, twitter:description, etc.) will not work. [Read more](#supporting-open-graph-twitter-card-tags).
 
