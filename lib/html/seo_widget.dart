@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:seo/head_tag.dart' as head_tag;
 import 'package:seo/html/seo_controller.dart';
-import 'package:seo/meta_tag.dart';
-import 'package:seo/seo_tag.dart';
+import 'package:seo/src/seo_tag.dart';
 
 class Seo extends StatelessWidget {
   final SeoTag tag;
@@ -27,11 +27,11 @@ class Seo extends StatelessWidget {
     required this.child,
   }) : tag = LinkTag(anchor: anchor, href: href);
 
-  Seo.meta({
+  Seo.head({
     super.key,
-    required List<MetaTag> tags,
+    required List<head_tag.HeadTag> tags,
     required this.child,
-  }) : tag = MetaTags(tags: tags);
+  }) : tag = HeadTags(tags: tags);
 
   @override
   Widget build(BuildContext context) {

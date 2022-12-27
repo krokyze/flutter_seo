@@ -1,4 +1,4 @@
-import 'package:seo/meta_tag.dart';
+import 'package:seo/head_tag.dart';
 
 abstract class SeoTag {
   const SeoTag();
@@ -32,10 +32,10 @@ class LinkTag extends SeoTag {
   });
 }
 
-class MetaTags extends SeoTag {
-  final List<MetaTag> tags;
+class HeadTags extends SeoTag {
+  final List<HeadTag> tags;
 
-  const MetaTags({
+  const HeadTags({
     required this.tags,
   });
 }

@@ -5,9 +5,9 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:seo/seo_html.dart';
-import 'package:seo/seo_tag.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_html.dart';
+import 'package:seo/src/seo_tag.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class SeoController extends StatefulWidget {
   final bool enabled;
@@ -101,10 +101,13 @@ class _SeoControllerState extends State<SeoController> {
       html.head,
       validator: NodeValidatorBuilder()
         ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-        ..allowCustomElement('title', attributes: ['flt-seo'])
         ..allowCustomElement(
           'meta',
-          attributes: ['name', 'property', 'content', 'flt-seo'],
+          attributes: ['name', 'http-equiv', 'content', 'flt-seo'],
+        )
+        ..allowCustomElement(
+          'link',
+          attributes: ['title', 'rel', 'type', 'href', 'media', 'flt-seo'],
         ),
     );
   }

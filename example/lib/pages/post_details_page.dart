@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:seo_example/post.dart';
+import 'package:seo_example/widgets/app_head.dart';
 import 'package:seo_example/widgets/app_image.dart';
-import 'package:seo_example/widgets/app_meta.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
 class PostDetailsPage extends StatelessWidget {
@@ -18,7 +18,7 @@ class PostDetailsPage extends StatelessWidget {
     final post = Post(id);
 
     return Scaffold(
-      body: AppMeta(
+      body: AppHead(
         title: post.title,
         description: post.text,
         author: post.author,

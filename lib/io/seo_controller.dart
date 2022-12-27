@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class SeoController extends StatelessWidget {
   final Widget child;

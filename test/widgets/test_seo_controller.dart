@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seo/html/seo_controller.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class TestSeoController extends StatelessWidget {
   final bool enabled;

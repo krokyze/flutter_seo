@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:seo/html/seo_widget.dart';
-import 'package:seo/seo_html.dart';
-import 'package:seo/seo_tag.dart';
-import 'package:seo/seo_tree.dart';
+import 'package:seo/src/seo_html.dart';
+import 'package:seo/src/seo_tag.dart';
+import 'package:seo/src/seo_tree.dart';
 
 class WidgetTree extends SeoTree {
   final BuildContext context;
@@ -76,8 +76,8 @@ class _Node with SeoTreeNode {
       return 'image: ${tag.alt} | url: ${tag.src}';
     } else if (tag is LinkTag) {
       return 'link: ${tag.anchor} | url: ${tag.href}';
-    } else if (tag is MetaTags) {
-      return 'meta: ${tag.tags.length}';
+    } else if (tag is HeadTags) {
+      return 'head: ${tag.tags.length}';
     } else {
       return 'div';
     }
@@ -116,9 +116,9 @@ class _Node with SeoTreeNode {
           content: html.body,
         ),
       );
-    } else if (tag is MetaTags) {
+    } else if (tag is HeadTags) {
       return html.copyWith(
-        head: html.head + tag.tags.map((tag) => meta(tag: tag)).join('\n'),
+        head: html.head + tag.tags.map((tag) => head(tag: tag)).join('\n'),
       );
     } else {
       return html.copyWith(

@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:seo_example/main_router.dart';
 import 'package:seo_example/post.dart';
+import 'package:seo_example/widgets/app_head.dart';
 import 'package:seo_example/widgets/app_image.dart';
 import 'package:seo_example/widgets/app_link.dart';
-import 'package:seo_example/widgets/app_meta.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
 class PostListPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class PostListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AppMeta(
+      body: AppHead(
         title: 'Flutter SEO Example',
         description: 'This is a Flutter example webpage using seo package.',
         child: ListView.separated(

@@ -13,7 +13,7 @@ dependencies:
     path: ../
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   auto_route_generator: ^5.0.3
   build_runner: ^2.3.3
 
