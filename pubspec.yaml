@@ -1,6 +1,6 @@
 name: seo
-description: Flutter package for SEO support on Web.
-version: 0.0.2
+description: Flutter package for enabling SEO (meta, body tag) support on Web.
+version: 0.0.3
 homepage: https://github.com/krokyze/flutter_seo
 
 environment:

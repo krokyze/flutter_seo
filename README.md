@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/seo.svg)](https://pub.dartlang.org/packages/seo)
 
-Flutter package for SEO support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`, `Seo.meta(...)` widgets into html document tree.
+Flutter package for enabling SEO (meta, body tag) support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`, `Seo.head(...)` widgets into html document tree.
 
 See demo here: https://seo.krokyze.dev
 
@@ -12,7 +12,7 @@ See demo here: https://seo.krokyze.dev
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.2
+  seo: ^0.0.3
 ```
 
 &nbsp;  
@@ -42,13 +42,13 @@ class App extends StatelessWidget {
 &nbsp;  
 There's two available SeoTree implementations:
 * **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
-* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.meta(...)`:
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.head(...)`:
     * https://github.com/flutter/flutter/issues/90794
     * https://github.com/flutter/flutter/issues/110284
 
 &nbsp;
 ## Sample Usage
-You should wrap all your SEO required widgets accordingly within `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)` and SEO required pages within `Seo.meta(...)`. From personal experience it's more comfortable to create custom [AppText](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_text.dart), [AppImage](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_image.dart), [AppLink](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_link.dart), [AppMeta](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_meta.dart) base widgets and use those in the project.
+You should wrap all your SEO required widgets accordingly within `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)` and SEO required pages within `Seo.head(...)`. From personal experience it's more comfortable to create custom [AppText](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_text.dart), [AppImage](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_image.dart), [AppLink](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_link.dart), [AppHead](https://github.com/krokyze/flutter_seo/blob/main/example/lib/widgets/app_head.dart) base widgets and use those in the project.
 
 #### Text
 ```dart
@@ -78,7 +78,7 @@ Seo.link(
 
 #### Meta
 ```dart
-Seo.meta(
+Seo.head(
   tags: [
     MetaNameTag(name: 'title', content: 'Flutter SEO Example'),
   ],
