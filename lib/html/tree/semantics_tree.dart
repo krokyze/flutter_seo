@@ -11,6 +11,8 @@ class SemanticsTree extends SeoTree {
 
   @override
   Stream<void> changes() {
+    // https://github.com/dart-lang/linter/issues/1381
+    // ignore: close_sinks
     late StreamController<void> controller;
     SemanticsHandle? handle;
 
