@@ -12,7 +12,7 @@ See demo here: https://seo.krokyze.dev
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.3
+  seo: ^0.0.4
 ```
 
 &nbsp;  
@@ -42,7 +42,7 @@ class App extends StatelessWidget {
 &nbsp;  
 There's two available SeoTree implementations:
 * **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
-* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.head(...)`:
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.head(...)`, `TextTagStyle`:
     * https://github.com/flutter/flutter/issues/90794
     * https://github.com/flutter/flutter/issues/110284
 
@@ -56,6 +56,12 @@ Seo.text(
   text: 'Some text',
   child: ...,
 ); // converts to: <p>Some text</p>
+
+Seo.text(
+  text: 'Some text',
+  style: TextTagStyle.h1,
+  child: ...,
+); // converts to: <h1>Some text</h1>
 ```
 
 #### Image

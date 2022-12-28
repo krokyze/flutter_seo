@@ -95,6 +95,7 @@ class _Node with SeoTreeNode {
       return html.copyWith(
         body: text(
           text: tag.text,
+          style: tag.style,
           content: html.body,
         ),
       );

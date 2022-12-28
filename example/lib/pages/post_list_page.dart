@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:seo/seo.dart';
 import 'package:seo_example/main_router.dart';
 import 'package:seo_example/post.dart';
 import 'package:seo_example/widgets/app_head.dart';
@@ -64,6 +65,7 @@ class _Card extends StatelessWidget {
                       children: [
                         AppText(
                           text: post.title,
+                          tagStyle: TextTagStyle.h6,
                           style: Theme.of(context).textTheme.headline6,
                         ),
                         Padding(

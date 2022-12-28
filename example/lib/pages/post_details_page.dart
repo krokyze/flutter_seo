@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:seo/seo.dart';
 import 'package:seo_example/post.dart';
 import 'package:seo_example/widgets/app_head.dart';
 import 'package:seo_example/widgets/app_image.dart';
@@ -43,6 +44,7 @@ class PostDetailsPage extends StatelessWidget {
                         children: [
                           AppText(
                             text: post.title,
+                            tagStyle: TextTagStyle.h5,
                             style: Theme.of(context).textTheme.headline5,
                           ),
                           Padding(
