@@ -10,8 +10,9 @@ class Seo extends StatelessWidget {
   Seo.text({
     super.key,
     required String text,
+    TextTagStyle style = TextTagStyle.p,
     required this.child,
-  }) : tag = TextTag(text: text);
+  }) : tag = TextTag(text: text, style: style);
 
   Seo.image({
     super.key,

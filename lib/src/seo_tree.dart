@@ -20,9 +20,21 @@ abstract class SeoTreeNode {
 
   String text({
     required String text,
+    required TextTagStyle style,
     required String content,
   }) {
-    return '<p style="color:black;">$text</p>$content';
+    const tagStyleMap = {
+      TextTagStyle.h1: 'h1',
+      TextTagStyle.h2: 'h2',
+      TextTagStyle.h3: 'h3',
+      TextTagStyle.h4: 'h4',
+      TextTagStyle.h5: 'h5',
+      TextTagStyle.h6: 'h6',
+      TextTagStyle.p: 'p',
+    };
+
+    final tag = tagStyleMap[style] ?? 'p';
+    return '<$tag style="color:black;">$text</$tag>$content';
   }
 
   String image({

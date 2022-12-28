@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seo/head_tag.dart';
+import 'package:seo/src/seo_tag.dart';
 
 class Seo extends StatelessWidget {
   final Widget child;
@@ -7,6 +8,7 @@ class Seo extends StatelessWidget {
   const Seo.text({
     super.key,
     required String text,
+    TextTagStyle style = TextTagStyle.p,
     required this.child,
   });
 

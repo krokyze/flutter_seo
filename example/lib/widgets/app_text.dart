@@ -15,6 +15,7 @@ class AppText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Seo.text(
       text: text,
+      style: style?.textTagStyle(context) ?? TextTagStyle.p,
       child: Text(
         text,
         style: style,
