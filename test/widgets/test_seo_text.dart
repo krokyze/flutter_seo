@@ -4,12 +4,18 @@ import 'package:seo/seo.dart';
 import '../const.dart';
 
 class TestSeoText extends StatelessWidget {
-  const TestSeoText({super.key});
+  final TextTagStyle tagStyle;
+
+  const TestSeoText({
+    super.key,
+    this.tagStyle = TextTagStyle.p,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Seo.text(
       text: text,
+      style: tagStyle,
       child: const SizedBox.square(dimension: 1),
     );
   }

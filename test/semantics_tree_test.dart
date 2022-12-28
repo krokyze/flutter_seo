@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seo/html/tree/semantics_tree.dart';
+import 'package:seo/src/seo_tag.dart';
 
 import 'base.dart';
 import 'const.dart';
@@ -15,13 +16,31 @@ void main() {
   testWidgets('Seo.text is processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (_) => SemanticsTree(),
-      child: const TestSeoText(),
+      child: Column(
+        children: const [
+          TestSeoText(tagStyle: TextTagStyle.h1),
+          TestSeoText(tagStyle: TextTagStyle.h2),
+          TestSeoText(tagStyle: TextTagStyle.h3),
+          TestSeoText(tagStyle: TextTagStyle.h4),
+          TestSeoText(tagStyle: TextTagStyle.h5),
+          TestSeoText(tagStyle: TextTagStyle.h6),
+          TestSeoText(),
+        ],
+      ),
     ));
     await tester.pumpAndSettle(debounceTime);
 
     expect(
       bodyHtml,
-      '<div><p style="color:black;">$text</p></div>',
+      '<div>${[
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+        '<p style="color:black;">$text</p>',
+      ].join()}</div>',
     );
   });
 
