@@ -2,9 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/seo.svg)](https://pub.dartlang.org/packages/seo)
 
-Flutter package for enabling SEO (meta, body tag) support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`, `Seo.head(...)` widgets into html document tree.
-
-See demo here: https://seo.krokyze.dev
+Flutter package for enabling SEO (meta, body tag) support on Web. The package listens to widget tree changes and converts `Seo.text(...)`, `Seo.image(...)`, `Seo.link(...)`, `Seo.head(...)` widgets into html document tree. [View Demo](#demo)
 
 &nbsp;
 ## Getting Started
@@ -109,3 +107,11 @@ To improve initial page load speed for bots you can force HTML renderer which is
 
 #### Supporting Open Graph, Twitter Card tags
 Facebook, Twitter, etc. simply load index.html and don't execute any JavaScript that webpage contains so we're not able to change meta tags within Dart code. The proposed solution is to create simple Server-Side Rendering which would add Open Graph, Twitter Card tags within `index.html` before returning it to Client.
+
+&nbsp;
+## Demo
+View demo here: https://seo.krokyze.dev
+
+#### PageSpeed Insights
+[![Mobile](https://img.shields.io/badge/Mobile-lightgray?style=flat-square)![Performance ≈56](https://img.shields.io/badge/Performance-≈55-important?style=flat-square)![Accessibility 87](https://img.shields.io/badge/Accessibility-87-important?style=flat-square)![Best Practices 100](https://img.shields.io/badge/Best_Practices-100-success?style=flat-square)![SEO 100](https://img.shields.io/badge/SEO-100-success?style=flat-square)\
+![Desktop](https://img.shields.io/badge/Desktop-lightgray?style=flat-square)![Performance ≈85](https://img.shields.io/badge/Performance-≈85-important?style=flat-square)![Accessibility 88](https://img.shields.io/badge/Accessibility-88-important?style=flat-square)![Best Practices 100](https://img.shields.io/badge/Best_Practices-100-success?style=flat-square)![SEO 100](https://img.shields.io/badge/SEO-100-success?style=flat-square)](https://pagespeed.web.dev/report?url=https://seo.krokyze.dev)
