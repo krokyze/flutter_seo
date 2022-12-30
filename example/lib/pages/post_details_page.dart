@@ -30,11 +30,12 @@ class PostDetailsPage extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               child: Row(
                 children: [
-                  AppImage(
-                    alt: post.title,
-                    src: post.imageLarge,
-                    width: 256,
-                    height: 256,
+                  SizedBox.square(
+                    dimension: 256.0,
+                    child: AppImage(
+                      alt: post.title,
+                      src: post.imageLarge,
+                    ),
                   ),
                   Expanded(
                     child: Padding(

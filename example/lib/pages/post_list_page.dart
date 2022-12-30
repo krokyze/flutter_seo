@@ -51,11 +51,12 @@ class _Card extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                AppImage(
-                  alt: post.title,
-                  src: post.imageSmall,
-                  width: 64,
-                  height: 64,
+                SizedBox.square(
+                  dimension: 64.0,
+                  child: AppImage(
+                    alt: post.title,
+                    src: post.imageSmall,
+                  ),
                 ),
                 Expanded(
                   child: Padding(

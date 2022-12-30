@@ -12,8 +12,8 @@ class Post {
   Post(int id) : this._(id, Faker(seed: id));
 
   Post._(this.id, Faker faker)
-      : imageSmall = 'https://picsum.photos/id/$id/64/64',
-        imageLarge = 'https://picsum.photos/id/$id/256/256',
+      : imageSmall = 'https://picsum.photos/id/$id/128/128',
+        imageLarge = 'https://picsum.photos/id/$id/512/512',
         title = faker.food.dish(),
         text = faker.lorem.sentences(10).join(' '),
         author = faker.person.name(),
