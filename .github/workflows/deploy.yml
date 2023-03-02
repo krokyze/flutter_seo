@@ -61,6 +61,10 @@ jobs:
           fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
           fvm flutter build web --release --web-renderer auto --base-href "${{ steps.configure.outputs.base_path }}/"
+          
+          # because GitHub doesn't support redirecting all to single index.html
+          # we duplicate (copy) index.html to all possible paths (https://github.com/orgs/community/discussions/27676#discussioncomment-3297224)
+          cp build/web/index.html build/web/posts/index.html
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
