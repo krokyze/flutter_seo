@@ -46,7 +46,7 @@ class PostDetailsPage extends StatelessWidget {
                           AppText(
                             text: post.title,
                             tagStyle: TextTagStyle.h5,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 4.0),
@@ -54,13 +54,13 @@ class PostDetailsPage extends StatelessWidget {
                               children: [
                                 AppText(
                                   text: post.author,
-                                  style: Theme.of(context).textTheme.caption,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: AppText(
                                     text: post.date,
-                                    style: Theme.of(context).textTheme.caption,
+                                    style: Theme.of(context).textTheme.bodySmall,
                                   ),
                                 ),
                               ],
@@ -70,7 +70,7 @@ class PostDetailsPage extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 16.0),
                             child: AppText(
                               text: post.text,
-                              style: Theme.of(context).textTheme.subtitle2,
+                              style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ),
                         ],
