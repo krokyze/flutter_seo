@@ -6,6 +6,7 @@ import 'package:seo_example/widgets/app_head.dart';
 import 'package:seo_example/widgets/app_image.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
+@RoutePage()
 class PostDetailsPage extends StatelessWidget {
   final int id;
 
@@ -60,7 +61,8 @@ class PostDetailsPage extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: AppText(
                                     text: post.date,
-                                    style: Theme.of(context).textTheme.bodySmall,
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
                                   ),
                                 ),
                               ],

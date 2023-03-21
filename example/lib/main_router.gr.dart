@@ -1,33 +1,24 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
 part of 'main_router.dart';
 
-class _$MainRouter extends RootStackRouter {
+abstract class _$MainRouter extends RootStackRouter {
   _$MainRouter([GlobalKey<NavigatorState>? navigatorKey]) : super(navigatorKey);
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    PostListRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const PostListPage(),
-      );
-    },
     PostDetailsRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<PostDetailsRouteArgs>(
           orElse: () => PostDetailsRouteArgs(id: pathParams.getInt('id')));
-      return AdaptivePage<dynamic>(
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: PostDetailsPage(
           key: args.key,
@@ -35,43 +26,13 @@ class _$MainRouter extends RootStackRouter {
         ),
       );
     },
+    PostListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PostListPage(),
+      );
+    },
   };
-
-  @override
-  List<RouteConfig> get routes => [
-        RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/posts',
-          fullMatch: true,
-        ),
-        RouteConfig(
-          PostListRoute.name,
-          path: '/posts',
-        ),
-        RouteConfig(
-          PostDetailsRoute.name,
-          path: '/posts/:id',
-        ),
-        RouteConfig(
-          '*#redirect',
-          path: '*',
-          redirectTo: '/',
-          fullMatch: true,
-        ),
-      ];
-}
-
-/// generated route for
-/// [PostListPage]
-class PostListRoute extends PageRouteInfo<void> {
-  const PostListRoute()
-      : super(
-          PostListRoute.name,
-          path: '/posts',
-        );
-
-  static const String name = 'PostListRoute';
 }
 
 /// generated route for
@@ -80,17 +41,21 @@ class PostDetailsRoute extends PageRouteInfo<PostDetailsRouteArgs> {
   PostDetailsRoute({
     Key? key,
     required int id,
+    List<PageRouteInfo>? children,
   }) : super(
           PostDetailsRoute.name,
-          path: '/posts/:id',
           args: PostDetailsRouteArgs(
             key: key,
             id: id,
           ),
           rawPathParams: {'id': id},
+          initialChildren: children,
         );
 
   static const String name = 'PostDetailsRoute';
+
+  static const PageInfo<PostDetailsRouteArgs> page =
+      PageInfo<PostDetailsRouteArgs>(name);
 }
 
 class PostDetailsRouteArgs {
@@ -107,4 +72,18 @@ class PostDetailsRouteArgs {
   String toString() {
     return 'PostDetailsRouteArgs{key: $key, id: $id}';
   }
+}
+
+/// generated route for
+/// [PostListPage]
+class PostListRoute extends PageRouteInfo<void> {
+  const PostListRoute({List<PageRouteInfo>? children})
+      : super(
+          PostListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PostListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

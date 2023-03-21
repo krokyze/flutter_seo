@@ -8,6 +8,7 @@ import 'package:seo_example/widgets/app_image.dart';
 import 'package:seo_example/widgets/app_link.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
+@RoutePage()
 class PostListPage extends StatelessWidget {
   const PostListPage({super.key});
 
@@ -36,16 +37,14 @@ class _Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final route = PostDetailsRoute(id: post.id);
-
     return AppLink(
       anchor: post.title,
-      href: route.fullPath,
+      href: '/posts/${post.id}',
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => context.router.push(route),
+          onTap: () => context.router.push(PostDetailsRoute(id: post.id)),
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(16.0),
