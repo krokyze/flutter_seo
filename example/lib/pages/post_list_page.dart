@@ -37,14 +37,16 @@ class _Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final route = PostDetailsRoute(id: post.id);
+
     return AppLink(
       anchor: post.title,
-      href: '/posts/${post.id}',
+      href: route.match(context)!.fullPath,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => context.router.push(PostDetailsRoute(id: post.id)),
+          onTap: () => context.router.push(route),
           child: Container(
             color: Colors.white,
             padding: const EdgeInsets.all(16.0),
