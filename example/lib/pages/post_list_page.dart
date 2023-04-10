@@ -8,6 +8,7 @@ import 'package:seo_example/widgets/app_image.dart';
 import 'package:seo_example/widgets/app_link.dart';
 import 'package:seo_example/widgets/app_text.dart';
 
+@RoutePage()
 class PostListPage extends StatelessWidget {
   const PostListPage({super.key});
 
@@ -40,7 +41,7 @@ class _Card extends StatelessWidget {
 
     return AppLink(
       anchor: post.title,
-      href: route.fullPath,
+      href: route.match(context)!.fullPath,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
@@ -67,7 +68,7 @@ class _Card extends StatelessWidget {
                         AppText(
                           text: post.title,
                           tagStyle: TextTagStyle.h6,
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
@@ -75,13 +76,13 @@ class _Card extends StatelessWidget {
                             children: [
                               AppText(
                                 text: post.author,
-                                style: Theme.of(context).textTheme.caption,
+                                style: Theme.of(context).textTheme.bodySmall,
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
                                 child: AppText(
                                   text: post.date,
-                                  style: Theme.of(context).textTheme.caption,
+                                  style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ),
                             ],

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:seo/seo.dart';
 import 'package:seo_example/main_router.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(App());
 }
 
@@ -22,8 +24,8 @@ class App extends StatelessWidget {
           textTheme: Theme.of(context)
               .textTheme
               .copyWith(
-                headline5: const TextStyle(fontWeight: FontWeight.w600),
-                headline6: const TextStyle(fontWeight: FontWeight.w600),
+                headlineSmall: const TextStyle(fontWeight: FontWeight.w600),
+                titleLarge: const TextStyle(fontWeight: FontWeight.w600),
               )
               .apply(
                 displayColor: Colors.black,

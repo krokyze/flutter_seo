@@ -5,19 +5,21 @@ import 'package:seo_example/pages/post_list_page.dart';
 
 part 'main_router.gr.dart';
 
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: [
-    AutoRoute(
-      path: '/posts',
-      page: PostListPage,
-      initial: true,
-    ),
-    AutoRoute(
-      path: '/posts/:id',
-      page: PostDetailsPage,
-    ),
-    RedirectRoute(path: '*', redirectTo: '/'),
-  ],
-)
-class MainRouter extends _$MainRouter {}
+@AutoRouterConfig()
+class MainRouter extends _$MainRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
+
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(
+          path: '/posts',
+          page: PostListRoute.page,
+        ),
+        AutoRoute(
+          path: '/posts/:id',
+          page: PostDetailsRoute.page,
+        ),
+        RedirectRoute(path: '*', redirectTo: '/posts'),
+      ];
+}

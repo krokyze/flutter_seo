@@ -17,7 +17,7 @@ class AppLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Seo.link(
       anchor: anchor,
-      href: '/#$href',
+      href: href,
       child: child,
     );
   }
