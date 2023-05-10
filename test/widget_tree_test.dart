@@ -17,8 +17,8 @@ void main() {
   testWidgets('Seo.text is processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
-      child: Column(
-        children: const [
+      child: const Column(
+        children: [
           TestSeoText(tagStyle: TextTagStyle.h1),
           TestSeoText(tagStyle: TextTagStyle.h2),
           TestSeoText(tagStyle: TextTagStyle.h3),
@@ -74,10 +74,10 @@ void main() {
   testWidgets('multiple Seo\'s are processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
-      child: TestSeoHead(
+      child: const TestSeoHead(
         child: TestSeoLink(
           child: Row(
-            children: const [
+            children: [
               TestSeoImage(),
               TestSeoText(),
             ],
