@@ -12,14 +12,14 @@ class TestSeoPage extends StatelessWidget {
     return Column(
       children: List.generate(
         256,
-        (_) => TestSeoLink(
+        (_) => const TestSeoLink(
           child: Row(
             children: [
-              const TestSeoImage(),
-              const TestSeoText(),
+              TestSeoImage(),
+              TestSeoText(),
               TestSeoLink(
                 child: Column(
-                  children: const [
+                  children: [
                     TestSeoText(),
                     TestSeoText(),
                     TestSeoText(),
@@ -28,7 +28,7 @@ class TestSeoPage extends StatelessWidget {
               ),
               TestSeoLink(
                 child: Column(
-                  children: const [
+                  children: [
                     TestSeoImage(),
                     TestSeoImage(),
                     TestSeoImage(),
