@@ -10,7 +10,7 @@ Flutter package for enabling SEO (meta, body tag) support on Web. The package li
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.4
+  seo: ^0.0.5
 ```
 
 &nbsp;  
