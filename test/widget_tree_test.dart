@@ -95,7 +95,7 @@ void main() {
         '<meta name="$name" http-equiv="$httpEquiv" content="$content" flt-seo="">',
         '<link title="$title" href="$href" flt-seo="">',
         '<link type="$type" media="$media" flt-seo="">',
-        '<link title="$title" rel="$rel" type="$type" href="$href" media="$media" flt-seo="">',
+        '<link title="$title" rel="$rel" type="$type" hreflang="$hreflang" href="$href" media="$media" flt-seo="">',
       ].join('\n'),
     );
 

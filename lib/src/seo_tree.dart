@@ -75,6 +75,7 @@ abstract class SeoTreeNode {
         'title': tag.title,
         'rel': tag.rel,
         'type': tag.type,
+        'hreflang': tag.hreflang,
         'href': tag.href,
         'media': tag.media,
       }

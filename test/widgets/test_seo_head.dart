@@ -20,7 +20,14 @@ class TestSeoHead extends StatelessWidget {
         MetaTag(name: name, httpEquiv: httpEquiv, content: content),
         LinkTag(title: title, href: href),
         LinkTag(type: type, media: media),
-        LinkTag(title: title, rel: rel, type: type, href: href, media: media),
+        LinkTag(
+          title: title,
+          rel: rel,
+          type: type,
+          hreflang: hreflang,
+          href: href,
+          media: media,
+        ),
       ],
       child: child ?? const SizedBox.square(dimension: 1),
     );
