@@ -107,7 +107,15 @@ class _SeoControllerState extends State<SeoController> {
         )
         ..allowCustomElement(
           'link',
-          attributes: ['title', 'rel', 'type', 'href', 'media', 'flt-seo'],
+          attributes: [
+            'title',
+            'rel',
+            'type',
+            'hreflang',
+            'href',
+            'media',
+            'flt-seo'
+          ],
         ),
     );
   }
