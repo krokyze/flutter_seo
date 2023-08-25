@@ -13,7 +13,7 @@ abstract class SeoTree {
   Widget process(SeoTag tag, Widget child);
 }
 
-abstract class SeoTreeNode {
+mixin SeoTreeNode {
   bool get seo;
 
   SeoHtml toHtml();
