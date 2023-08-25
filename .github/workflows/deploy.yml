@@ -32,7 +32,7 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "11"
-      - uses: actions/configure-pages@v2
+      - uses: actions/configure-pages@v3
         id: configure
       - name: cache flutter
         uses: actions/cache@v3
@@ -71,9 +71,9 @@ jobs:
               mkdir -p build/web/posts/$i && cp build/web/index.html build/web/posts/$i/index.html
           done
       - name: upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: 'example/build/web'
       - name: deploy github page
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
