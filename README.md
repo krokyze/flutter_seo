@@ -13,6 +13,15 @@ dependencies:
   seo: ^0.0.6
 ```
 
+Use `usePathUrlStrategy()` to ensure that Google recognizes each URL as a distinct page. Failure to do so may result in Google perceiving all URLs as the same page. For additional details, refer to [this video](https://www.youtube.com/watch?v=vow-m6R-YHo).
+
+```
+void main() {
+  usePathUrlStrategy();
+  runApp(App());
+}
+```
+
 &nbsp;  
 Wrap your app within `SeoController` which will handle listening to widget tree changes and updating the html document tree. In case your app has authorization and user is logged in you can disable the controller by `enabled: false` as it's redundant to update the html document tree at that state.
 
@@ -20,6 +29,7 @@ Wrap your app within `SeoController` which will handle listening to widget tree 
 import 'package:seo/seo.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const App());
 }
 
