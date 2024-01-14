@@ -30,10 +30,15 @@ class SeoController extends StatefulWidget {
     required SeoTag tag,
     required Widget child,
   }) {
-    return context
-        .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()!
-        .tree
-        .process(tag, child);
+    final tree = context
+        .dependOnInheritedWidgetOfExactType<_InheritedSeoTreeWidget>()
+        ?.tree;
+
+    if (tree == null) {
+      throw Exception('SeoController not found');
+    }
+
+    return tree.process(tag, child);
   }
 }
 
