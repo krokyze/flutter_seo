@@ -15,7 +15,7 @@ dependencies:
 
 Use `usePathUrlStrategy()` to ensure that Google recognizes each URL as a distinct page. Failure to do so may result in Google perceiving all URLs as the same page. For additional details, refer to [this video](https://www.youtube.com/watch?v=vow-m6R-YHo).
 
-```
+```dart
 void main() {
   usePathUrlStrategy();
   runApp(App());
