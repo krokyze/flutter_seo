@@ -41,7 +41,7 @@ class _Card extends StatelessWidget {
 
     return AppLink(
       anchor: post.title,
-      href: route.match(context)!.fullPath,
+      href: '${route.match(context)!.fullPath}/',
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
