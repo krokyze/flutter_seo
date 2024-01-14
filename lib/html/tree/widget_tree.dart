@@ -75,7 +75,7 @@ class _Node with SeoTreeNode {
     } else if (tag is ImageTag) {
       return 'image: ${tag.alt} | url: ${tag.src}';
     } else if (tag is LinkTag) {
-      return 'link: ${tag.anchor} | url: ${tag.href}';
+      return 'link: ${tag.anchor} | url: ${tag.href} | rel: ${tag.rel}';
     } else if (tag is HeadTags) {
       return 'head: ${tag.tags.length}';
     } else {
@@ -114,6 +114,7 @@ class _Node with SeoTreeNode {
         body: link(
           anchor: tag.anchor,
           href: tag.href,
+          rel: tag.rel,
           content: html.body,
         ),
       );

@@ -29,10 +29,12 @@ class ImageTag extends SeoTag {
 class LinkTag extends SeoTag {
   final String anchor;
   final String href;
+  final String? rel;
 
   const LinkTag({
     required this.anchor,
     required this.href,
+    required this.rel,
   });
 }
 

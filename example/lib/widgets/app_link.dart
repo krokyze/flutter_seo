@@ -4,12 +4,14 @@ import 'package:seo/seo.dart';
 class AppLink extends StatelessWidget {
   final String anchor;
   final String href;
+  final String? rel;
   final Widget child;
 
   const AppLink({
     super.key,
     required this.anchor,
     required this.href,
+    this.rel,
     required this.child,
   });
 
@@ -18,6 +20,7 @@ class AppLink extends StatelessWidget {
     return Seo.link(
       anchor: anchor,
       href: href,
+      rel: rel,
       child: child,
     );
   }

@@ -25,8 +25,9 @@ class Seo extends StatelessWidget {
     super.key,
     required String anchor,
     required String href,
+    String? rel,
     required this.child,
-  }) : tag = LinkTag(anchor: anchor, href: href);
+  }) : tag = LinkTag(anchor: anchor, href: href, rel: rel);
 
   Seo.head({
     super.key,

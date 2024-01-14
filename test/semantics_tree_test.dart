@@ -60,7 +60,7 @@ void main() {
   testWidgets('Seo.link is processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (_) => SemanticsTree(),
-      child: const TestSeoLink(),
+      child: const TestSeoLink(rel: rel),
     ));
     await tester.pumpAndSettle(debounceTime);
 

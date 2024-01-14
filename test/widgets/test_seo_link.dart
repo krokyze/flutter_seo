@@ -4,10 +4,12 @@ import 'package:seo/seo.dart';
 import '../const.dart';
 
 class TestSeoLink extends StatelessWidget {
+  final String? rel;
   final Widget? child;
 
   const TestSeoLink({
     super.key,
+    this.rel,
     this.child,
   });
 
@@ -16,6 +18,7 @@ class TestSeoLink extends StatelessWidget {
     return Seo.link(
       anchor: anchor,
       href: href,
+      rel: rel,
       child: child ?? const SizedBox.square(dimension: 1),
     );
   }

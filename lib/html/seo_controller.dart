@@ -43,6 +43,38 @@ class SeoController extends StatefulWidget {
 }
 
 class _SeoControllerState extends State<SeoController> {
+  final _headValidator = NodeValidatorBuilder()
+    ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
+    ..allowCustomElement(
+      'meta',
+      attributes: ['name', 'http-equiv', 'content', 'flt-seo'],
+    )
+    ..allowCustomElement(
+      'link',
+      attributes: [
+        'title',
+        'rel',
+        'type',
+        'hreflang',
+        'href',
+        'media',
+        'flt-seo'
+      ],
+    );
+
+  final _bodyValidator = NodeValidatorBuilder()
+    ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
+    ..allowCustomElement('flt-seo')
+    ..allowCustomElement('noscript')
+    ..allowCustomElement('h1', attributes: ['style'])
+    ..allowCustomElement('h2', attributes: ['style'])
+    ..allowCustomElement('h3', attributes: ['style'])
+    ..allowCustomElement('h4', attributes: ['style'])
+    ..allowCustomElement('h5', attributes: ['style'])
+    ..allowCustomElement('h6', attributes: ['style'])
+    ..allowCustomElement('p', attributes: ['style'])
+    ..allowCustomElement('a', attributes: ['rel']);
+
   StreamSubscription? _subscription;
   int? _headHash;
   int? _bodyHash;
@@ -98,30 +130,12 @@ class _SeoControllerState extends State<SeoController> {
     _headHash = hash;
 
     head.children
-        .where((element) => element.attributes.containsKey('flt-seo'))
-        .forEach((element) => element.remove());
+        .removeWhere((element) => element.attributes.containsKey('flt-seo'));
 
     head.insertAdjacentHtml(
       'beforeEnd',
       html.head,
-      validator: NodeValidatorBuilder()
-        ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-        ..allowCustomElement(
-          'meta',
-          attributes: ['name', 'http-equiv', 'content', 'flt-seo'],
-        )
-        ..allowCustomElement(
-          'link',
-          attributes: [
-            'title',
-            'rel',
-            'type',
-            'hreflang',
-            'href',
-            'media',
-            'flt-seo'
-          ],
-        ),
+      validator: _headValidator,
     );
   }
 
@@ -133,24 +147,12 @@ class _SeoControllerState extends State<SeoController> {
     if (_bodyHash == hash) return;
     _bodyHash = hash;
 
-    body.children
-        .where((element) => element.localName == 'flt-seo')
-        .forEach((element) => element.remove());
+    body.children.removeWhere((element) => element.localName == 'flt-seo');
 
     body.insertAdjacentHtml(
       'afterBegin',
       '<flt-seo>${html.body}</flt-seo>',
-      validator: NodeValidatorBuilder()
-        ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-        ..allowCustomElement('flt-seo')
-        ..allowCustomElement('noscript')
-        ..allowCustomElement('h1', attributes: ['style'])
-        ..allowCustomElement('h2', attributes: ['style'])
-        ..allowCustomElement('h3', attributes: ['style'])
-        ..allowCustomElement('h4', attributes: ['style'])
-        ..allowCustomElement('h5', attributes: ['style'])
-        ..allowCustomElement('h6', attributes: ['style'])
-        ..allowCustomElement('p', attributes: ['style']),
+      validator: _bodyValidator,
     );
   }
 
