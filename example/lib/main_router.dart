@@ -13,13 +13,13 @@ class MainRouter extends _$MainRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          path: '/posts/',
+          path: '/posts',
           page: PostListRoute.page,
         ),
         AutoRoute(
-          path: '/posts/:id/',
+          path: '/posts/:id',
           page: PostDetailsRoute.page,
         ),
-        RedirectRoute(path: '*', redirectTo: '/posts/'),
+        RedirectRoute(path: '*', redirectTo: '/posts'),
       ];
 }
