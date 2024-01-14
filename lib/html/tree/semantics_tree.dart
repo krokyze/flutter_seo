@@ -151,6 +151,7 @@ class _Node with SeoTreeNode {
         body: link(
           anchor: parent.label,
           href: parent.value,
+          rel: null,
           content: html.body,
         ),
       );

@@ -61,13 +61,13 @@ void main() {
   testWidgets('Seo.link is processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
-      child: const TestSeoLink(),
+      child: const TestSeoLink(rel: rel),
     ));
     await tester.pumpAndSettle(debounceTime);
 
     expect(
       bodyHtml,
-      '<div><div><a href="$href"><p>$anchor</p></a></div></div>',
+      '<div><div><a href="$href" rel="$rel"><p>$anchor</p></a></div></div>',
     );
   });
 

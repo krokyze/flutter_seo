@@ -40,7 +40,7 @@ class App extends StatelessWidget {
 &nbsp;  
 There's two available SeoTree implementations:
 * **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
-* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.head(...)`, `TextTagStyle`:
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but enables known Flutter SDK issues and doesn't support `Seo.head(...)`, `Seo.text(style: ...)`, `Seo.link(rel: ...)`:
     * https://github.com/flutter/flutter/issues/90794
     * https://github.com/flutter/flutter/issues/110284
 
@@ -76,8 +76,9 @@ Seo.image(
 Seo.link(
   href: 'http://www.example.com',
   anchor: 'Some example',
+  rel: 'nofollow',
   child: ...,
-); // converts to: <a href="http://www.example.com"><p>Some example</p></a>
+); // converts to: <a href="http://www.example.com" rel="nofollow"><p>Some example</p></a>
 ```
 
 #### Head

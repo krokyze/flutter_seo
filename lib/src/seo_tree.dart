@@ -50,9 +50,19 @@ mixin SeoTreeNode {
   String link({
     required String anchor,
     required String href,
+    required String? rel,
     required String content,
   }) {
-    return '<div><a href="$href"><p>$anchor</p></a>$content</div>';
+    final attributes = {
+      'href': href,
+      'rel': rel,
+    }
+        .entries
+        .where((entry) => entry.value != null)
+        .map((entry) => '${entry.key}="${entry.value}"')
+        .join(' ');
+
+    return '<div><a $attributes><p>$anchor</p></a>$content</div>';
   }
 
   String head({
