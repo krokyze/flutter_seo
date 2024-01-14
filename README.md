@@ -76,7 +76,7 @@ Seo.image(
 Seo.link(
   href: 'http://www.example.com',
   anchor: 'Some example',
-  rel: 'nofollow',
+  rel: 'nofollow', (optional)
   child: ...,
 ); // converts to: <a href="http://www.example.com" rel="nofollow"><p>Some example</p></a>
 ```
