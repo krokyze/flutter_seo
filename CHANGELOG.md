@@ -1,3 +1,7 @@
+## 0.0.6
+
+* Added rel for Seo.link().
+
 ## 0.0.5
 
 * Added hreflang for link tag.
