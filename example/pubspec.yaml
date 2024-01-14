@@ -17,4 +17,4 @@ dependencies:
 dev_dependencies:
   flutter_lints: ^3.0.1
   auto_route_generator: ^7.3.2
-  build_runner: ^2.4.6
+  build_runner: ^2.4.8
