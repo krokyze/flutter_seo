@@ -54,8 +54,7 @@ jobs:
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: 'example/build/web'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          production-deploy: true
           deploy-message: "Deploy from GitHub Actions"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
