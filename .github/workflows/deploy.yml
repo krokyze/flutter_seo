@@ -5,21 +5,12 @@ on:
   push:
     branches: [main]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
-  group: "pages"
+  group: "deploy"
   cancel-in-progress: true
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     defaults:
@@ -32,8 +23,6 @@ jobs:
         with:
           distribution: "temurin"
           java-version: "11"
-      - uses: actions/configure-pages@v4
-        id: configure
       - name: cache flutter
         uses: actions/cache@v4
         with:
@@ -53,27 +42,21 @@ jobs:
       - name: update base_url
         working-directory: 'example/web'
         run: |
-          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' robots.txt
-          sed -i 's,base_url,${{ steps.configure.outputs.base_url }},g' sitemap.xml
+          sed -i 's,base_url,https://flutter-seo.netlify.app,g' robots.txt
+          sed -i 's,base_url,https://flutter-seo.netlify.app,g' sitemap.xml
       - name: flutter build
         run: |
           cd example
           fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
-          fvm flutter build web --release --web-renderer auto --base-href "${{ steps.configure.outputs.base_path }}/"
-          
-          # because GitHub doesn't support redirecting all to single index.html
-          # we duplicate (copy) index.html to all possible paths (https://github.com/orgs/community/discussions/27676#discussioncomment-3297224)
-          mkdir -p build/web/posts && cp build/web/index.html build/web/posts/index.html
-
-          END=64
-          for ((i=0;i<END;i++)); do
-              mkdir -p build/web/posts/$i && cp build/web/index.html build/web/posts/$i/index.html
-          done
-      - name: upload artifact
-        uses: actions/upload-pages-artifact@v3
+          fvm flutter build web --release --web-renderer auto
+      - name: deploy to netlify
+        uses: nwtgck/actions-netlify@v2.0
         with:
-          path: 'example/build/web'
-      - name: deploy github page
-        id: deployment
-        uses: actions/deploy-pages@v4
+          publish-dir: 'example/build/web'
+          production-deploy: true
+          deploy-message: "Deploy from GitHub Actions"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1

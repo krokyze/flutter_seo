@@ -119,12 +119,12 @@ Facebook, Twitter, etc. simply load index.html and don't execute any JavaScript 
 
 &nbsp;
 ## Demo
-View demo here: https://seo.krokyze.dev
+View demo here: https://flutter-seo.netlify.app
 
 #### PageSpeed Insights
 
 [![Mobile](https://img.shields.io/badge/Mobile-lightgray?style=flat-square)![Performance ≈56](https://img.shields.io/badge/Performance-≈55-important?style=flat-square)![Accessibility 87](https://img.shields.io/badge/Accessibility-87-important?style=flat-square)![Best Practices 100](https://img.shields.io/badge/Best_Practices-100-success?style=flat-square)![SEO 100](https://img.shields.io/badge/SEO-100-success?style=flat-square)\
-![Desktop](https://img.shields.io/badge/Desktop-lightgray?style=flat-square)![Performance ≈85](https://img.shields.io/badge/Performance-≈85-important?style=flat-square)![Accessibility 88](https://img.shields.io/badge/Accessibility-88-important?style=flat-square)![Best Practices 100](https://img.shields.io/badge/Best_Practices-100-success?style=flat-square)![SEO 100](https://img.shields.io/badge/SEO-100-success?style=flat-square)](https://pagespeed.web.dev/report?url=https://seo.krokyze.dev)
+![Desktop](https://img.shields.io/badge/Desktop-lightgray?style=flat-square)![Performance ≈85](https://img.shields.io/badge/Performance-≈85-important?style=flat-square)![Accessibility 88](https://img.shields.io/badge/Accessibility-88-important?style=flat-square)![Best Practices 100](https://img.shields.io/badge/Best_Practices-100-success?style=flat-square)![SEO 100](https://img.shields.io/badge/SEO-100-success?style=flat-square)](https://pagespeed.web.dev/report?url=https://flutter-seo.netlify.app)
 
 #### Google Search
 
