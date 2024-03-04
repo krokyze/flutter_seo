@@ -51,7 +51,7 @@ jobs:
           fvm flutter pub get
           fvm flutter build web --release --web-renderer auto
       - name: deploy to netlify
-        uses: nwtgck/actions-netlify@v2.0
+        uses: nwtgck/actions-netlify@v2.1
         with:
           publish-dir: 'example/build/web'
           production-deploy: true
