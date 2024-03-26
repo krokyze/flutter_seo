@@ -62,7 +62,7 @@ mixin SeoTreeNode {
         .map((entry) => '${entry.key}="${entry.value}"')
         .join(' ');
 
-    return '<div><a $attributes><p>$anchor</p></a>$content</div>';
+    return '<div><a $attributes style="text-decoration:none"><p style="color:transparent">$anchor</p></a>$content</div>';
   }
 
   String head({
