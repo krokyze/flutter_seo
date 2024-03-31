@@ -64,7 +64,7 @@ class _SeoControllerState extends State<SeoController> {
 
   final _bodyValidator = NodeValidatorBuilder()
     ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-    ..allowCustomElement('flt-seo')
+    ..allowCustomElement('div', attributes: ['flt-seo'])
     ..allowCustomElement('noscript')
     ..allowCustomElement('h1', attributes: ['style'])
     ..allowCustomElement('h2', attributes: ['style'])
@@ -147,11 +147,12 @@ class _SeoControllerState extends State<SeoController> {
     if (_bodyHash == hash) return;
     _bodyHash = hash;
 
-    body.children.removeWhere((element) => element.localName == 'flt-seo');
+    body.children
+        .removeWhere((element) => element.attributes.containsKey('flt-seo'));
 
     body.insertAdjacentHtml(
       'afterBegin',
-      '<flt-seo>${html.body}</flt-seo>',
+      '<div flt-seo>${html.body}</div>',
       validator: _bodyValidator,
     );
   }

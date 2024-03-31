@@ -14,7 +14,7 @@ String? get headHtml => document.head?.children
     .join('\n');
 
 String? get bodyHtml => document.body?.children
-    .firstWhereOrNull((element) => element.localName == 'flt-seo')
+    .firstWhereOrNull((element) => element.attributes.containsKey('flt-seo'))
     ?.innerHtml;
 
 Duration measure<T>(T Function() measure) {
