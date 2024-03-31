@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Swap body flt-seo tag with div.
+
 ## 0.0.6
 
 * Added rel for Seo.link().
