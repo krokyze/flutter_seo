@@ -38,5 +38,5 @@ unlinked.ds
 unlinked_spec.ds
 app.*.symbols
 
-# FVM
-.fvm/flutter_sdk
+# FVM Version Cache
+.fvm/
