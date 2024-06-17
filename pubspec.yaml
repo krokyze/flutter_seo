@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rxdart: ^0.27.5
+  rxdart: ">=0.27.5 <0.29.0"
 
 dev_dependencies:
   flutter_lints: ">=3.0.1 <5.0.0"
