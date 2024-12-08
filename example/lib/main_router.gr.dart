@@ -9,33 +9,6 @@
 
 part of 'main_router.dart';
 
-abstract class _$MainRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$MainRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    PostDetailsRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<PostDetailsRouteArgs>(
-          orElse: () => PostDetailsRouteArgs(id: pathParams.getInt('id')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: PostDetailsPage(
-          key: args.key,
-          id: args.id,
-        ),
-      );
-    },
-    PostListRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PostListPage(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [PostDetailsPage]
 class PostDetailsRoute extends PageRouteInfo<PostDetailsRouteArgs> {
@@ -55,8 +28,18 @@ class PostDetailsRoute extends PageRouteInfo<PostDetailsRouteArgs> {
 
   static const String name = 'PostDetailsRoute';
 
-  static const PageInfo<PostDetailsRouteArgs> page =
-      PageInfo<PostDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<PostDetailsRouteArgs>(
+          orElse: () => PostDetailsRouteArgs(id: pathParams.getInt('id')));
+      return PostDetailsPage(
+        key: args.key,
+        id: args.id,
+      );
+    },
+  );
 }
 
 class PostDetailsRouteArgs {
@@ -86,5 +69,10 @@ class PostListRoute extends PageRouteInfo<void> {
 
   static const String name = 'PostListRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PostListPage();
+    },
+  );
 }
