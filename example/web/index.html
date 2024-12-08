@@ -17,15 +17,11 @@
 		<link rel="manifest" href="manifest.json" />
 	</head>
 	<body>
+		<script src="./scripts/isbot-5.1.17.js"></script>
 		<script>
-			import("./scripts/botd-1.1.0.js")
-				.then((botd) => botd.load())
-				.then((botd) => botd.detect())
-				.then(function (result) {
-					if (result.bot) {
-						window.flutterWebRenderer = "html";
-					}
-				});
+			if (isbot(navigator.userAgent)) {
+				window.flutterWebRenderer = "html";
+			}
 		</script>
 
 		<script src="flutter_bootstrap.js" async></script>
