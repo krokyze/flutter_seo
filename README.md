@@ -104,16 +104,6 @@ Seo.head(
 &nbsp;
 ## Tips
 
-#### Force HTML renderer for bots
-To improve initial page load speed for bots you can force HTML renderer which is 2MB smaller in download size than CanvasKit. Full example [here](https://github.com/krokyze/flutter_seo/blob/main/example/web/index.html#L20..L29).
-```html
-<script>
-  if (bot) {
-    window.flutterWebRenderer = "html";
-  }
-</script>
-```
-
 #### Supporting Open Graph, Twitter Card tags
 Facebook, Twitter, etc. simply load index.html and don't execute any JavaScript that webpage contains so we're not able to change meta tags within Dart code. The proposed solution is to create simple Server-Side Rendering which would add Open Graph, Twitter Card tags within `index.html` before returning it to Client.
 
