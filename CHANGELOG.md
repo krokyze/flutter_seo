@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Updated rxdart to the latest version.
+
 ## 0.0.7
 
 * Swap body flt-seo tag with div.
