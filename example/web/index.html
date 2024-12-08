@@ -17,17 +17,6 @@
 		<link rel="manifest" href="manifest.json" />
 	</head>
 	<body>
-		<script>
-			import("./scripts/botd-1.1.0.js")
-				.then((botd) => botd.load())
-				.then((botd) => botd.detect())
-				.then(function (result) {
-					if (result.bot) {
-						window.flutterWebRenderer = "html";
-					}
-				});
-		</script>
-
 		<script src="flutter_bootstrap.js" async></script>
 	</body>
 </html>
