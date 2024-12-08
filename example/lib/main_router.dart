@@ -6,7 +6,7 @@ import 'package:seo_example/pages/post_list_page.dart';
 part 'main_router.gr.dart';
 
 @AutoRouterConfig()
-class MainRouter extends _$MainRouter {
+class MainRouter extends RootStackRouter {
   @override
   RouteType get defaultRouteType => const RouteType.adaptive();
 
