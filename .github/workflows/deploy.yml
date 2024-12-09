@@ -49,7 +49,7 @@ jobs:
           cd example
           fvm config --cache-path ../.fvm/cache
           fvm flutter pub get
-          fvm flutter build web --release --web-renderer auto
+          fvm flutter build web --wasm --release
       - name: deploy to netlify
         uses: nwtgck/actions-netlify@v3.0
         with:

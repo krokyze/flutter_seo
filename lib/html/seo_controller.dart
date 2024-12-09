@@ -1,6 +1,7 @@
 import 'dart:async';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
+import 'dart:js_interop';
+import 'package:seo/html/node_list_extension.dart';
+import 'package:web/web.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -43,38 +44,6 @@ class SeoController extends StatefulWidget {
 }
 
 class _SeoControllerState extends State<SeoController> {
-  final _headValidator = NodeValidatorBuilder()
-    ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-    ..allowCustomElement(
-      'meta',
-      attributes: ['name', 'http-equiv', 'content', 'flt-seo'],
-    )
-    ..allowCustomElement(
-      'link',
-      attributes: [
-        'title',
-        'rel',
-        'type',
-        'hreflang',
-        'href',
-        'media',
-        'flt-seo'
-      ],
-    );
-
-  final _bodyValidator = NodeValidatorBuilder()
-    ..allowHtml5(uriPolicy: _AllowAllUriPolicy())
-    ..allowCustomElement('div', attributes: ['flt-seo'])
-    ..allowCustomElement('noscript')
-    ..allowCustomElement('h1', attributes: ['style'])
-    ..allowCustomElement('h2', attributes: ['style'])
-    ..allowCustomElement('h3', attributes: ['style'])
-    ..allowCustomElement('h4', attributes: ['style'])
-    ..allowCustomElement('h5', attributes: ['style'])
-    ..allowCustomElement('h6', attributes: ['style'])
-    ..allowCustomElement('p', attributes: ['style'])
-    ..allowCustomElement('a', attributes: ['rel']);
-
   StreamSubscription? _subscription;
   int? _headHash;
   int? _bodyHash;
@@ -129,13 +98,15 @@ class _SeoControllerState extends State<SeoController> {
     if (_headHash == hash) return;
     _headHash = hash;
 
-    head.children
-        .removeWhere((element) => element.attributes.containsKey('flt-seo'));
+    head
+        .querySelectorAll('[flt-seo]')
+        .toList()
+        .nonNulls
+        .forEach((node) => head.removeChild(node));
 
-    head.insertAdjacentHtml(
+    head.insertAdjacentHTML(
       'beforeEnd',
-      html.head,
-      validator: _headValidator,
+      html.head.toJS,
     );
   }
 
@@ -147,13 +118,15 @@ class _SeoControllerState extends State<SeoController> {
     if (_bodyHash == hash) return;
     _bodyHash = hash;
 
-    body.children
-        .removeWhere((element) => element.attributes.containsKey('flt-seo'));
+    body
+        .querySelectorAll('[flt-seo]')
+        .toList()
+        .nonNulls
+        .forEach((node) => body.removeChild(node));
 
-    body.insertAdjacentHtml(
+    body.insertAdjacentHTML(
       'afterBegin',
-      '<div flt-seo>${html.body}</div>',
-      validator: _bodyValidator,
+      '<div flt-seo>${html.body}</div>'.toJS,
     );
   }
 
@@ -171,11 +144,6 @@ class _SeoControllerState extends State<SeoController> {
     _subscription = null;
     super.dispose();
   }
-}
-
-class _AllowAllUriPolicy implements UriPolicy {
-  @override
-  bool allowsUri(String uri) => true;
 }
 
 class _InheritedSeoTreeWidget extends InheritedWidget {
