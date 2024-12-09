@@ -1,6 +1,6 @@
 ## 0.0.9
 
-* Add support for wasm.
+* Add support for Wasm.
 
 ## 0.0.8
 
