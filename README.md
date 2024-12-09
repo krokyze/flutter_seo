@@ -10,7 +10,7 @@ Flutter package for enabling SEO (meta, body tag) support on Web. The package li
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.8
+  seo: ^0.0.9
 ```
 
 Use `usePathUrlStrategy()` to ensure that Google recognizes each URL as a distinct page. Failure to do so may result in Google perceiving all URLs as the same page. For additional details, refer to [this video](https://www.youtube.com/watch?v=vow-m6R-YHo).
