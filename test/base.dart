@@ -1,4 +1,3 @@
-// ignore: avoid_web_libraries_in_flutter
 import 'package:seo/html/node_list_extension.dart';
 import 'package:web/web.dart';
 import 'dart:ui';
