@@ -68,10 +68,7 @@ class _Card extends StatelessWidget {
                         AppText(
                           text: post.title,
                           tagStyle: TextTagStyle.h6,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(color: Colors.red),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
