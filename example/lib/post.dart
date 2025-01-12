@@ -12,8 +12,18 @@ class Post {
   Post(int id) : this._(id, Faker(seed: id));
 
   Post._(this.id, Faker faker)
-      : imageSmall = 'https://picsum.photos/id/$id/128/128.webp',
-        imageLarge = 'https://picsum.photos/id/$id/512/512.webp',
+      : imageSmall = faker.image.loremPicsum(
+          width: 128,
+          height: 128,
+          seed: '$id',
+          imageFormat: ImageFormat.webp,
+        ),
+        imageLarge = faker.image.loremPicsum(
+          width: 512,
+          height: 512,
+          seed: '$id',
+          imageFormat: ImageFormat.webp,
+        ),
         title = faker.food.dish(),
         text = faker.lorem.sentences(10).join(' '),
         author = faker.person.name(),
