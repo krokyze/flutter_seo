@@ -44,6 +44,7 @@ jobs:
         run: |
           sed -i 's,base_url,https://flutter-seo.netlify.app,g' robots.txt
           sed -i 's,base_url,https://flutter-seo.netlify.app,g' sitemap.xml
+          sed -i "s/\$version/$(openssl rand -hex 16)/g" index.html
       - name: flutter build
         run: |
           cd example
