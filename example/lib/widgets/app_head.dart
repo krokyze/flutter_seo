@@ -7,6 +7,7 @@ class AppHead extends StatefulWidget {
   final String title;
   final String description;
   final String? author;
+  final String? canonicalUrl;
 
   final Widget child;
 
@@ -15,6 +16,7 @@ class AppHead extends StatefulWidget {
     required this.title,
     required this.description,
     this.author,
+    this.canonicalUrl,
     required this.child,
   });
 
@@ -43,8 +45,15 @@ class _AppHeadState extends State<AppHead> {
         tags: [
           MetaTag(name: 'title', content: widget.title),
           MetaTag(name: 'description', content: widget.description),
-          if (widget.author != null)
+          if (widget.author != null) ...[
             MetaTag(name: 'author', content: widget.author),
+          ],
+          if (widget.canonicalUrl != null) ...[
+            LinkTag(
+              rel: 'canonical',
+              href: widget.canonicalUrl,
+            ),
+          ],
         ],
         child: widget.child,
       ),
