@@ -18,7 +18,7 @@ mixin SeoTreeNode {
 
   SeoHtml toHtml();
 
-  String text({
+  String textTag({
     required String text,
     required TextTagStyle style,
     required String content,
@@ -37,7 +37,7 @@ mixin SeoTreeNode {
     return '<$tag style="color:black;">$text</$tag>$content';
   }
 
-  String image({
+  String imageTag({
     required String src,
     required String alt,
     required double? height,
@@ -47,7 +47,7 @@ mixin SeoTreeNode {
     return '<noscript><img src="$src" alt="$alt" height="$height" width="$width"/></noscript>$content';
   }
 
-  String link({
+  String linkTag({
     required String anchor,
     required String href,
     required String? rel,
@@ -65,7 +65,14 @@ mixin SeoTreeNode {
     return '<div><a $attributes><p>$anchor</p></a>$content</div>';
   }
 
-  String head({
+  String htmlTag({
+    required String html,
+    required String content,
+  }) {
+    return '$html$content';
+  }
+
+  String headTag({
     required head_tag.HeadTag tag,
   }) {
     if (tag is head_tag.MetaTag) {
@@ -100,7 +107,7 @@ mixin SeoTreeNode {
     throw UnimplementedError('unsupported tag: $tag');
   }
 
-  String div({
+  String divTag({
     required String content,
   }) {
     return '<div>$content</div>';

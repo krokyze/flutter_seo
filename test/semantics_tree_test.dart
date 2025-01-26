@@ -7,6 +7,7 @@ import 'package:seo/src/seo_tag.dart';
 import 'base.dart';
 import 'const.dart';
 import 'widgets/test_seo_controller.dart';
+import 'widgets/test_seo_html.dart';
 import 'widgets/test_seo_image.dart';
 import 'widgets/test_seo_link.dart';
 import 'widgets/test_seo_page.dart';
@@ -67,6 +68,19 @@ void main() {
     expect(
       bodyHtml,
       '<div><div><a href="$href"><p>$anchor</p></a></div></div>',
+    );
+  });
+
+  testWidgets('Seo.html isn\'t processed', (tester) async {
+    await tester.pumpWidget(TestSeoController(
+      tree: (_) => SemanticsTree(),
+      child: const TestSeoHtml(),
+    ));
+    await tester.pumpAndSettle(debounceTime);
+
+    expect(
+      bodyHtml,
+      '<div></div>',
     );
   });
 

@@ -38,6 +38,14 @@ class LinkTag extends SeoTag {
   });
 }
 
+class HtmlTag extends SeoTag {
+  final String html;
+
+  const HtmlTag({
+    required this.html,
+  });
+}
+
 class HeadTags extends SeoTag {
   final List<HeadTag> tags;
 

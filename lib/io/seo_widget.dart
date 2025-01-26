@@ -23,6 +23,13 @@ class Seo extends StatelessWidget {
     super.key,
     required String anchor,
     required String href,
+    String? rel,
+    required this.child,
+  });
+
+  const Seo.html({
+    super.key,
+    required String html,
     required this.child,
   });
 

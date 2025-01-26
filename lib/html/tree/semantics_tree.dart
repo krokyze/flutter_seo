@@ -91,7 +91,7 @@ class SemanticsTree extends SeoTree {
         container: true,
         child: child,
       );
-    } else if (tag is HeadTags) {
+    } else if (tag is HtmlTag || tag is HeadTags) {
       // Semantics doesn't support a way to pass head tag info to SemanticsNode
       return child;
     }
@@ -148,7 +148,7 @@ class _Node with SeoTreeNode {
 
     if (_link) {
       return html.copyWith(
-        body: link(
+        body: linkTag(
           anchor: parent.label,
           href: parent.value,
           rel: null,
@@ -157,7 +157,7 @@ class _Node with SeoTreeNode {
       );
     } else if (_image) {
       return html.copyWith(
-        body: image(
+        body: imageTag(
           src: parent.value,
           alt: parent.label,
           height: parent.rect.height,
@@ -167,7 +167,7 @@ class _Node with SeoTreeNode {
       );
     } else if (_text) {
       return html.copyWith(
-        body: text(
+        body: textTag(
           text: parent.label,
           style: TextTagStyle.p,
           content: html.body,
@@ -175,7 +175,7 @@ class _Node with SeoTreeNode {
       );
     } else {
       return html.copyWith(
-        body: div(
+        body: divTag(
           content: html.body,
         ),
       );

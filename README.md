@@ -10,7 +10,7 @@ Flutter package for enabling SEO (meta, body tag) support on Web. The package li
 To use this plugin, add `seo` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 ```yaml
 dependencies:
-  seo: ^0.0.9
+  seo: ^0.0.10
 ```
 
 Use `usePathUrlStrategy()` to ensure that Google recognizes each URL as a distinct page. Failure to do so may result in Google perceiving all URLs as the same page. For additional details, refer to [this video](https://www.youtube.com/watch?v=vow-m6R-YHo).
@@ -50,7 +50,7 @@ class App extends StatelessWidget {
 &nbsp;  
 There's two available SeoTree implementations:
 * **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
-* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but doesn't support `Seo.head(...)`, `Seo.text(style: ...)`, `Seo.link(rel: ...)`
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but doesn't support `Seo.head(...)`, `Seo.text(style: ...)`, `Seo.link(rel: ...)`, `Seo.html(html: ...)`
 
 &nbsp;
 ## Sample Usage
@@ -87,6 +87,14 @@ Seo.link(
   rel: 'nofollow', (optional)
   child: ...,
 ); // converts to: <a href="http://www.example.com" rel="nofollow"><p>Some example</p></a>
+```
+
+#### Html
+```dart
+Seo.html(
+  html: '<div>Some raw html</div>',
+  child: ...,
+); // converts to: <div>Some raw html</div>
 ```
 
 #### Head

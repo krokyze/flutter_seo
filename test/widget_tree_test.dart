@@ -8,6 +8,7 @@ import 'base.dart';
 import 'const.dart';
 import 'widgets/test_seo_controller.dart';
 import 'widgets/test_seo_head.dart';
+import 'widgets/test_seo_html.dart';
 import 'widgets/test_seo_image.dart';
 import 'widgets/test_seo_link.dart';
 import 'widgets/test_seo_page.dart';
@@ -71,6 +72,19 @@ void main() {
     );
   });
 
+  testWidgets('Seo.html is processed correctly', (tester) async {
+    await tester.pumpWidget(TestSeoController(
+      tree: (context) => WidgetTree(context: context),
+      child: const TestSeoHtml(),
+    ));
+    await tester.pumpAndSettle(debounceTime);
+
+    expect(
+      bodyHtml,
+      '<div>$html</div>',
+    );
+  });
+
   testWidgets('multiple Seo\'s are processed correctly', (tester) async {
     await tester.pumpWidget(TestSeoController(
       tree: (context) => WidgetTree(context: context),
@@ -80,6 +94,7 @@ void main() {
             children: [
               TestSeoImage(),
               TestSeoText(),
+              TestSeoHtml(),
             ],
           ),
         ),
@@ -101,7 +116,7 @@ void main() {
 
     expect(
       bodyHtml,
-      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"/></noscript><p style="color:black;">$text</p></div></div>',
+      '<div><div><a href="$href"><p>$anchor</p></a><noscript><img src="$src" alt="$alt" height="$height" width="$width"/></noscript><p style="color:black;">$text</p>$html</div></div>',
     );
   });
 
