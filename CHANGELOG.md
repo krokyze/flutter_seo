@@ -1,3 +1,7 @@
+## 0.0.10
+
+* Added Seo.html() for raw html.
+
 ## 0.0.9
 
 * Add support for Wasm.

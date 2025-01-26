@@ -26,3 +26,6 @@ const rel = 'alternate';
 const type = 'application/rss+xml';
 const media = 'only screen and (max-device-width: 480px)';
 const hreflang = 'en';
+
+// html
+const html = '<div>Lorem Ipsum</div>';

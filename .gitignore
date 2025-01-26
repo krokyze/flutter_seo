@@ -40,3 +40,6 @@ app.*.symbols
 
 # FVM Version Cache
 .fvm/
+
+# Todo
+todo

@@ -76,6 +76,8 @@ class _Node with SeoTreeNode {
       return 'image: ${tag.alt} | url: ${tag.src}';
     } else if (tag is LinkTag) {
       return 'link: ${tag.anchor} | url: ${tag.href} | rel: ${tag.rel}';
+    } else if (tag is HtmlTag) {
+      return 'html: ${tag.html}';
     } else if (tag is HeadTags) {
       return 'head: ${tag.tags.length}';
     } else {
@@ -93,7 +95,7 @@ class _Node with SeoTreeNode {
 
     if (tag is TextTag) {
       return html.copyWith(
-        body: text(
+        body: textTag(
           text: tag.text,
           style: tag.style,
           content: html.body,
@@ -101,7 +103,7 @@ class _Node with SeoTreeNode {
       );
     } else if (tag is ImageTag) {
       return html.copyWith(
-        body: image(
+        body: imageTag(
           src: tag.src,
           alt: tag.alt,
           height: parent?.size?.height,
@@ -111,20 +113,27 @@ class _Node with SeoTreeNode {
       );
     } else if (tag is LinkTag) {
       return html.copyWith(
-        body: link(
+        body: linkTag(
           anchor: tag.anchor,
           href: tag.href,
           rel: tag.rel,
           content: html.body,
         ),
       );
+    } else if (tag is HtmlTag) {
+      return html.copyWith(
+        body: htmlTag(
+          html: tag.html,
+          content: html.body,
+        ),
+      );
     } else if (tag is HeadTags) {
       return html.copyWith(
-        head: html.head + tag.tags.map((tag) => head(tag: tag)).join('\n'),
+        head: html.head + tag.tags.map((tag) => headTag(tag: tag)).join('\n'),
       );
     } else {
       return html.copyWith(
-        body: div(
+        body: divTag(
           content: html.body,
         ),
       );
