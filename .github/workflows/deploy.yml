@@ -26,15 +26,10 @@ jobs:
       - name: cache flutter
         uses: actions/cache@v4
         with:
-          key: ${{ runner.os }}-${{ hashFiles('**/.fvm/fvm_config.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('.fvmrc') }}
           path: .fvm/cache
-      - name: add brew to $PATH
-        run: |
-          echo "/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin" >> $GITHUB_PATH
       - name: fvm install
-        run: |
-          brew tap leoafarias/fvm
-          brew install fvm
+        run: curl -fsSL https://fvm.app/install.sh | bash
       - name: flutter install
         run: |
           fvm config --cache-path .fvm/cache
