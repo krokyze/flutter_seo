@@ -1,0 +1,19 @@
+name: "Install Flutter"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install FVM
+      shell: bash
+      run: curl -fsSL https://fvm.app/install.sh | bash -s -- 3.2.1
+
+    - name: Cache Flutter SDK
+      uses: actions/cache@v4
+      with:
+        key: ${{ runner.os }}-flutter-${{ hashFiles('.fvmrc') }}
+        restore-keys: ${{ runner.os }}-flutter-
+        path: .fvm/cache
+
+    - name: Install Flutter SDK
+      shell: bash
+      run: fvm config --cache-path .fvm/cache && fvm install

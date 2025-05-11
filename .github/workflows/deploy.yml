@@ -19,23 +19,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Install Flutter
+        uses: ./.github/actions/flutter
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
         with:
           distribution: "temurin"
-          java-version: "11"
-      - name: cache flutter
-        uses: actions/cache@v4
-        with:
-          key: ${{ runner.os }}-${{ hashFiles('.fvmrc') }}
-          path: .fvm/cache
-      - name: fvm install
-        run: curl -fsSL https://fvm.app/install.sh | bash
-      - name: flutter install
-        run: |
-          fvm config --cache-path .fvm/cache
-          fvm install
+          java-version: "17"
       - name: update base_url
-        working-directory: 'example/web'
+        working-directory: "example/web"
         run: |
           sed -i 's,base_url,https://flutter-seo.netlify.app,g' robots.txt
           sed -i 's,base_url,https://flutter-seo.netlify.app,g' sitemap.xml
@@ -49,7 +41,7 @@ jobs:
       - name: deploy to netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-          publish-dir: 'example/build/web'
+          publish-dir: "example/build/web"
           production-deploy: true
           deploy-message: "Deploy from GitHub Actions"
         env:
