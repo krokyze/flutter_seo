@@ -36,7 +36,7 @@ class _AppHeadState extends State<AppHead> {
           SystemChrome.setApplicationSwitcherDescription(
             ApplicationSwitcherDescription(
               label: widget.title,
-              primaryColor: Theme.of(context).primaryColor.value,
+              primaryColor: Theme.of(context).primaryColor.toARGB32(),
             ),
           );
         }
