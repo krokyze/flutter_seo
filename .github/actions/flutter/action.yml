@@ -5,7 +5,7 @@ runs:
   steps:
     - name: Install FVM
       shell: bash
-      run: curl -fsSL https://fvm.app/install.sh | bash
+      run: curl -fsSL https://fvm.app/install | bash
 
     - name: Cache Flutter SDK
       uses: actions/cache@v4
