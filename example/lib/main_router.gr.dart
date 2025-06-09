@@ -14,12 +14,12 @@ part of 'main_router.dart';
 /// [PostDetailsPage]
 class PostDetailsRoute extends PageRouteInfo<PostDetailsRouteArgs> {
   PostDetailsRoute({Key? key, required int id, List<PageRouteInfo>? children})
-    : super(
-        PostDetailsRoute.name,
-        args: PostDetailsRouteArgs(key: key, id: id),
-        rawPathParams: {'id': id},
-        initialChildren: children,
-      );
+      : super(
+          PostDetailsRoute.name,
+          args: PostDetailsRouteArgs(key: key, id: id),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
 
   static const String name = 'PostDetailsRoute';
 
@@ -46,13 +46,23 @@ class PostDetailsRouteArgs {
   String toString() {
     return 'PostDetailsRouteArgs{key: $key, id: $id}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PostDetailsRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }
 
 /// generated route for
 /// [PostListPage]
 class PostListRoute extends PageRouteInfo<void> {
   const PostListRoute({List<PageRouteInfo>? children})
-    : super(PostListRoute.name, initialChildren: children);
+      : super(PostListRoute.name, initialChildren: children);
 
   static const String name = 'PostListRoute';
 
