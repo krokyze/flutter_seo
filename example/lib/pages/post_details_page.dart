@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:seo/seo.dart';
+import 'package:seo_example/main_router.dart';
 import 'package:seo_example/post.dart';
 import 'package:seo_example/widgets/app_head.dart';
 import 'package:seo_example/widgets/app_image.dart';
@@ -22,8 +23,10 @@ class PostDetailsPage extends StatelessWidget {
     return Scaffold(
       body: AppHead(
         title: post.title,
-        description: post.text,
+        description: post.description,
         author: post.author,
+        canonicalUrl:
+            Uri.base.origin + PostDetailsRoute(id: id).match(context)!.fullPath,
         child: Column(
           children: [
             Container(
@@ -35,7 +38,7 @@ class PostDetailsPage extends StatelessWidget {
                     dimension: 256.0,
                     child: AppImage(
                       alt: post.title,
-                      src: post.imageLarge,
+                      src: post.image,
                     ),
                   ),
                   Expanded(
