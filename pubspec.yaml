@@ -4,8 +4,8 @@ version: 0.0.10
 homepage: https://github.com/krokyze/flutter_seo
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.3.0"
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
 
 dependencies:
   flutter:

@@ -21,7 +21,7 @@ class PostListPage extends StatelessWidget {
         canonicalUrl:
             Uri.base.origin + PostListRoute().match(context)!.fullPath,
         child: ListView.separated(
-          itemCount: 64,
+          itemCount: Post.count,
           itemBuilder: (_, id) => _Card(post: Post(id)),
           separatorBuilder: (_, __) => const SizedBox(height: 16.0),
         ),
@@ -58,7 +58,7 @@ class _Card extends StatelessWidget {
                   dimension: 64.0,
                   child: AppImage(
                     alt: post.title,
-                    src: post.imageSmall,
+                    src: post.image,
                   ),
                 ),
                 Expanded(
