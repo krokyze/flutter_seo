@@ -18,8 +18,7 @@ class PostListPage extends StatelessWidget {
       body: AppHead(
         title: 'Flutter SEO Example',
         description: 'This is a Flutter example webpage using seo package.',
-        canonicalUrl:
-            Uri.base.origin + PostListRoute().match(context)!.fullPath,
+        canonicalUrl: Uri.base.origin,
         child: ListView.separated(
           itemCount: 64,
           itemBuilder: (_, id) => _Card(post: Post(id)),

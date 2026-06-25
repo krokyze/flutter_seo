@@ -1,3 +1,7 @@
+# TODO: IMPORTANT
+Don't use <script src="flutter_bootstrap.js" async></script> but instead inline the entire contents of the flutter_bootstrap.js file by inserting the template token {{flutter_bootstrap_js}} in your index.html file.
+
+
 # flutter_seo
 
 [![pub package](https://img.shields.io/pub/v/seo.svg)](https://pub.dartlang.org/packages/seo)
