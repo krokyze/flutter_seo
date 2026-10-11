@@ -19,29 +19,24 @@ class WidgetTree extends SeoTree {
 
   @override
   SeoTreeNode? traverse() {
-    final children = <Element>[];
-    context.visitChildElements((element) => children.add(element));
+    final root = _Node(parent: null, children: []);
 
-    return _Node(
-      parent: null,
-      children: children
-          .map(_traverse)
-          .expand((node) => node.seo ? [node] : node.children)
-          .toList(),
-    );
-  }
+    var nodes = root.children;
+    void visit(Element element) {
+      final parent = nodes;
+      if (element.widget is Seo) {
+        final node = _Node(parent: element, children: []);
+        nodes.add(node);
+        nodes = node.children;
+      }
 
-  _Node _traverse(Element element) {
-    final children = <Element>[];
-    element.debugVisitOnstageChildren((element) => children.add(element));
+      element.debugVisitOnstageChildren(visit);
+      nodes = parent;
+    }
 
-    return _Node(
-      parent: element,
-      children: children
-          .map(_traverse)
-          .expand((node) => node.seo ? [node] : node.children)
-          .toList(),
-    );
+    context.visitChildElements(visit);
+
+    return root;
   }
 
   @override
@@ -77,40 +72,47 @@ class _Node with SeoTreeNode {
 
   @override
   SeoHtml toHtml() {
+    final head = StringBuffer();
+    final body = _toHtml(head);
+
+    return SeoHtml(head: head.toString(), body: body);
+  }
+
+  String _toHtml(StringBuffer head) {
     final widget = parent?.widget;
     final tag = widget is Seo ? widget.tag : null;
-    final html = children
-        .map((e) => e.toHtml())
-        .fold(const SeoHtml(head: '', body: ''), (h1, h2) => h1 + h2);
 
-    return switch (tag) {
-      TextTag() => html.copyWith(
-        body: textTag(text: tag.text, style: tag.style, content: html.body),
-      ),
-      ImageTag() => html.copyWith(
-        body: imageTag(
+    final buffer = StringBuffer();
+    for (final child in children) {
+      buffer.write(child._toHtml(head));
+    }
+    final content = buffer.toString();
+
+    switch (tag) {
+      case TextTag():
+        return textTag(text: tag.text, style: tag.style, content: content);
+      case ImageTag():
+        return imageTag(
           src: tag.src,
           alt: tag.alt,
           height: parent?.size?.height,
           width: parent?.size?.width,
-          content: html.body,
-        ),
-      ),
-      LinkTag() => html.copyWith(
-        body: linkTag(
+          content: content,
+        );
+      case LinkTag():
+        return linkTag(
           anchor: tag.anchor,
           href: tag.href,
           rel: tag.rel,
-          content: html.body,
-        ),
-      ),
-      HtmlTag() => html.copyWith(
-        body: htmlTag(html: tag.html, content: html.body),
-      ),
-      HeadTags() => html.copyWith(
-        head: html.head + tag.tags.map((tag) => headTag(tag: tag)).join('\n'),
-      ),
-      null => html.copyWith(body: divTag(content: html.body)),
-    };
+          content: content,
+        );
+      case HtmlTag():
+        return htmlTag(html: tag.html, content: content);
+      case HeadTags():
+        head.write(tag.tags.map((tag) => headTag(tag: tag)).join('\n'));
+        return content;
+      case null:
+        return divTag(content: content);
+    }
   }
 }
