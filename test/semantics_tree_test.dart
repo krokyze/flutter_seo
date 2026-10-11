@@ -15,41 +15,37 @@ import 'widgets/test_seo_text.dart';
 
 void main() {
   testWidgets('Seo.text is processed correctly', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) => SemanticsTree(),
-      child: const Column(
-        children: [
-          TestSeoText(tagStyle: TextTagStyle.h1),
-          TestSeoText(tagStyle: TextTagStyle.h2),
-          TestSeoText(tagStyle: TextTagStyle.h3),
-          TestSeoText(tagStyle: TextTagStyle.h4),
-          TestSeoText(tagStyle: TextTagStyle.h5),
-          TestSeoText(tagStyle: TextTagStyle.h6),
-          TestSeoText(),
-        ],
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) => SemanticsTree(),
+        child: const Column(
+          children: [
+            TestSeoText(tagStyle: TextTagStyle.h1),
+            TestSeoText(tagStyle: TextTagStyle.h2),
+            TestSeoText(tagStyle: TextTagStyle.h3),
+            TestSeoText(tagStyle: TextTagStyle.h4),
+            TestSeoText(tagStyle: TextTagStyle.h5),
+            TestSeoText(tagStyle: TextTagStyle.h6),
+            TestSeoText(),
+          ],
+        ),
       ),
-    ));
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(
       bodyHtml,
-      '<div>${[
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-        '<p style="color:black;">$text</p>',
-      ].join()}</div>',
+      '<div>${['<h1 style="color:black;">$text</h1>', '<h2 style="color:black;">$text</h2>', '<h3 style="color:black;">$text</h3>', '<h4 style="color:black;">$text</h4>', '<h5 style="color:black;">$text</h5>', '<h6 style="color:black;">$text</h6>', '<p style="color:black;">$text</p>'].join()}</div>',
     );
   });
 
   testWidgets('Seo.image is processed correctly', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) => SemanticsTree(),
-      child: const TestSeoImage(),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) => SemanticsTree(),
+        child: const TestSeoImage(),
+      ),
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(
@@ -59,10 +55,12 @@ void main() {
   });
 
   testWidgets('Seo.link is processed correctly', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) => SemanticsTree(),
-      child: const TestSeoLink(rel: rel),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) => SemanticsTree(),
+        child: const TestSeoLink(rel: rel),
+      ),
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(
@@ -72,30 +70,26 @@ void main() {
   });
 
   testWidgets('Seo.html isn\'t processed', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) => SemanticsTree(),
-      child: const TestSeoHtml(),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) => SemanticsTree(),
+        child: const TestSeoHtml(),
+      ),
+    );
     await tester.pumpAndSettle(debounceTime);
 
-    expect(
-      bodyHtml,
-      '<div></div>',
-    );
+    expect(bodyHtml, '<div></div>');
   });
 
   testWidgets('multiple Seo\'s are processed correctly', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) => SemanticsTree(),
-      child: const TestSeoLink(
-        child: Row(
-          children: [
-            TestSeoImage(),
-            TestSeoText(),
-          ],
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) => SemanticsTree(),
+        child: const TestSeoLink(
+          child: Row(children: [TestSeoImage(), TestSeoText()]),
         ),
       ),
-    ));
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(
@@ -106,20 +100,24 @@ void main() {
 
   testWidgets('traverse executes <0.5ms for single widget', (tester) async {
     late SemanticsTree tree;
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) {
-        tree = SemanticsTree();
-        return tree;
-      },
-      child: const TestSeoText(),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) {
+          tree = SemanticsTree();
+          return tree;
+        },
+        child: const TestSeoText(),
+      ),
+    );
 
     final duration =
-        List.generate(10, (_) => measure(() => tree.traverse()?.toHtml()))
-            .mapIndexed((index, duration) {
-      tester.printToConsole('$index - $duration');
-      return duration.inMicroseconds;
-    }).average;
+        List.generate(
+          10,
+          (_) => measure(() => tree.traverse()?.toHtml()),
+        ).mapIndexed((index, duration) {
+          tester.printToConsole('$index - $duration');
+          return duration.inMicroseconds;
+        }).average;
 
     expect(duration, lessThanOrEqualTo(500));
     tester.printToConsole('average - ${duration / 1000.0}ms');
@@ -129,20 +127,24 @@ void main() {
     await tester.binding.setSurfaceSize(largeScreenSize);
 
     late SemanticsTree tree;
-    await tester.pumpWidget(TestSeoController(
-      tree: (_) {
-        tree = SemanticsTree();
-        return tree;
-      },
-      child: const TestSeoPage(),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        tree: (_) {
+          tree = SemanticsTree();
+          return tree;
+        },
+        child: const TestSeoPage(),
+      ),
+    );
 
     final duration =
-        List.generate(10, (_) => measure(() => tree.traverse()?.toHtml()))
-            .mapIndexed((index, duration) {
-      tester.printToConsole('$index - $duration');
-      return duration.inMicroseconds;
-    }).average;
+        List.generate(
+          10,
+          (_) => measure(() => tree.traverse()?.toHtml()),
+        ).mapIndexed((index, duration) {
+          tester.printToConsole('$index - $duration');
+          return duration.inMicroseconds;
+        }).average;
 
     expect(duration, lessThanOrEqualTo(30000));
     tester.printToConsole('average - ${duration / 1000.0}ms');

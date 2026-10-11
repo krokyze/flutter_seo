@@ -8,9 +8,6 @@ class TestSeoHtml extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Seo.html(
-      html: html,
-      child: const SizedBox.square(dimension: 1),
-    );
+    return Seo.html(html: html, child: const SizedBox.square(dimension: 1));
   }
 }

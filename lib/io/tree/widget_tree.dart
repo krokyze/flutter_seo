@@ -5,9 +5,7 @@ import 'package:seo/src/seo_tag.dart';
 import 'package:seo/src/seo_tree.dart';
 
 class WidgetTree extends SeoTree {
-  WidgetTree({
-    required BuildContext context,
-  });
+  WidgetTree({required BuildContext context});
 
   @override
   Stream<void> changes() => throw UnimplementedError();

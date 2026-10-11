@@ -1,6 +1,6 @@
 import 'package:seo/head_tag.dart';
 
-abstract class SeoTag {
+sealed class SeoTag {
   const SeoTag();
 }
 
@@ -10,20 +10,14 @@ class TextTag extends SeoTag {
   final String text;
   final TextTagStyle style;
 
-  const TextTag({
-    required this.text,
-    required this.style,
-  });
+  const TextTag({required this.text, required this.style});
 }
 
 class ImageTag extends SeoTag {
   final String alt;
   final String src;
 
-  const ImageTag({
-    required this.alt,
-    required this.src,
-  });
+  const ImageTag({required this.alt, required this.src});
 }
 
 class LinkTag extends SeoTag {
@@ -31,25 +25,17 @@ class LinkTag extends SeoTag {
   final String href;
   final String? rel;
 
-  const LinkTag({
-    required this.anchor,
-    required this.href,
-    required this.rel,
-  });
+  const LinkTag({required this.anchor, required this.href, required this.rel});
 }
 
 class HtmlTag extends SeoTag {
   final String html;
 
-  const HtmlTag({
-    required this.html,
-  });
+  const HtmlTag({required this.html});
 }
 
 class HeadTags extends SeoTag {
   final List<HeadTag> tags;
 
-  const HeadTags({
-    required this.tags,
-  });
+  const HeadTags({required this.tags});
 }

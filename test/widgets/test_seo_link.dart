@@ -7,11 +7,7 @@ class TestSeoLink extends StatelessWidget {
   final String? rel;
   final Widget? child;
 
-  const TestSeoLink({
-    super.key,
-    this.rel,
-    this.child,
-  });
+  const TestSeoLink({super.key, this.rel, this.child});
 
   @override
   Widget build(BuildContext context) {

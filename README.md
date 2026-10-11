@@ -50,7 +50,7 @@ class App extends StatelessWidget {
 &nbsp;  
 There's two available SeoTree implementations:
 * **WidgetTree (recommended)** - based on traversing widget tree, while it's bit slower than SemanticsTree it's production ready and doesn't have any blocking Flutter SDK issues.
-* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but doesn't support `Seo.head(...)`, `Seo.text(style: ...)`, `Seo.link(rel: ...)`, `Seo.html(html: ...)`
+* **SemanticsTree (`experimental`)** - based on traversing semantic data node tree. Does traverse the tree faster but doesn't support `Seo.head(...)`, `Seo.link(rel: ...)`, `Seo.html(html: ...)`
 
 &nbsp;
 ## Sample Usage
@@ -117,7 +117,7 @@ Facebook, Twitter, etc. simply load index.html and don't execute any JavaScript 
 
 &nbsp;
 ## Demo
-View demo here: https://flutter-seo.netlify.app
+View demo here: [flutter-seo.netlify.app](https://flutter-seo.netlify.app/posts)
 
 #### PageSpeed Insights
 

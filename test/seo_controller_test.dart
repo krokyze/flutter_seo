@@ -8,11 +8,13 @@ import 'widgets/test_seo_text.dart';
 
 void main() {
   testWidgets('element is null if controller is disabled', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      enabled: false,
-      tree: (context) => WidgetTree(context: context),
-      child: const TestSeoHead(child: TestSeoText()),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        enabled: false,
+        tree: (context) => WidgetTree(context: context),
+        child: const TestSeoHead(child: TestSeoText()),
+      ),
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(headHtml, isEmpty);
@@ -20,11 +22,13 @@ void main() {
   });
 
   testWidgets('element is not null if controller is enabled', (tester) async {
-    await tester.pumpWidget(TestSeoController(
-      enabled: true,
-      tree: (context) => WidgetTree(context: context),
-      child: const TestSeoHead(child: TestSeoText()),
-    ));
+    await tester.pumpWidget(
+      TestSeoController(
+        enabled: true,
+        tree: (context) => WidgetTree(context: context),
+        child: const TestSeoHead(child: TestSeoText()),
+      ),
+    );
     await tester.pumpAndSettle(debounceTime);
 
     expect(headHtml, isNotEmpty);

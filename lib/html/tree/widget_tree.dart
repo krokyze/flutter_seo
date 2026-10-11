@@ -10,9 +10,7 @@ class WidgetTree extends SeoTree {
   final BuildContext context;
   final _controller = StreamController<void>();
 
-  WidgetTree({
-    required this.context,
-  });
+  WidgetTree({required this.context});
 
   @override
   Stream<void> changes() {
@@ -57,10 +55,7 @@ class _Node with SeoTreeNode {
   final Element? parent;
   final List<_Node> children;
 
-  const _Node({
-    required this.parent,
-    required this.children,
-  });
+  const _Node({required this.parent, required this.children});
 
   @override
   bool get seo => parent?.widget is Seo;
@@ -70,19 +65,14 @@ class _Node with SeoTreeNode {
     final widget = parent?.widget;
     final tag = widget is Seo ? widget.tag : null;
 
-    if (tag is TextTag) {
-      return 'text: ${tag.text}';
-    } else if (tag is ImageTag) {
-      return 'image: ${tag.alt} | url: ${tag.src}';
-    } else if (tag is LinkTag) {
-      return 'link: ${tag.anchor} | url: ${tag.href} | rel: ${tag.rel}';
-    } else if (tag is HtmlTag) {
-      return 'html: ${tag.html}';
-    } else if (tag is HeadTags) {
-      return 'head: ${tag.tags.length}';
-    } else {
-      return 'div';
-    }
+    return switch (tag) {
+      TextTag() => 'text: ${tag.text}',
+      ImageTag() => 'image: ${tag.alt} | url: ${tag.src}',
+      LinkTag() => 'link: ${tag.anchor} | url: ${tag.href} | rel: ${tag.rel}',
+      HtmlTag() => 'html: ${tag.html}',
+      HeadTags() => 'head: ${tag.tags.length}',
+      null => 'div',
+    };
   }
 
   @override
@@ -93,16 +83,11 @@ class _Node with SeoTreeNode {
         .map((e) => e.toHtml())
         .fold(const SeoHtml(head: '', body: ''), (h1, h2) => h1 + h2);
 
-    if (tag is TextTag) {
-      return html.copyWith(
-        body: textTag(
-          text: tag.text,
-          style: tag.style,
-          content: html.body,
-        ),
-      );
-    } else if (tag is ImageTag) {
-      return html.copyWith(
+    return switch (tag) {
+      TextTag() => html.copyWith(
+        body: textTag(text: tag.text, style: tag.style, content: html.body),
+      ),
+      ImageTag() => html.copyWith(
         body: imageTag(
           src: tag.src,
           alt: tag.alt,
@@ -110,33 +95,22 @@ class _Node with SeoTreeNode {
           width: parent?.size?.width,
           content: html.body,
         ),
-      );
-    } else if (tag is LinkTag) {
-      return html.copyWith(
+      ),
+      LinkTag() => html.copyWith(
         body: linkTag(
           anchor: tag.anchor,
           href: tag.href,
           rel: tag.rel,
           content: html.body,
         ),
-      );
-    } else if (tag is HtmlTag) {
-      return html.copyWith(
-        body: htmlTag(
-          html: tag.html,
-          content: html.body,
-        ),
-      );
-    } else if (tag is HeadTags) {
-      return html.copyWith(
+      ),
+      HtmlTag() => html.copyWith(
+        body: htmlTag(html: tag.html, content: html.body),
+      ),
+      HeadTags() => html.copyWith(
         head: html.head + tag.tags.map((tag) => headTag(tag: tag)).join('\n'),
-      );
-    } else {
-      return html.copyWith(
-        body: divTag(
-          content: html.body,
-        ),
-      );
-    }
+      ),
+      null => html.copyWith(body: divTag(content: html.body)),
+    };
   }
 }

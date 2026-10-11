@@ -119,8 +119,7 @@ class Post {
     Post._(
       id: 6,
       image: '/images/post-6.webp',
-      title:
-          'Using the seo Package to Inject Crawlable HTML in Flutter Web',
+      title: 'Using the seo Package to Inject Crawlable HTML in Flutter Web',
       description:
           'An overview of the seo package widgets and how to integrate them into an existing Flutter web app without restructuring it.',
       text:
@@ -135,8 +134,7 @@ class Post {
     Post._(
       id: 7,
       image: '/images/post-7.webp',
-      title:
-          'Open Graph Meta Tags and the Server-Side Rendering Requirement',
+      title: 'Open Graph Meta Tags and the Server-Side Rendering Requirement',
       description:
           'Why Open Graph and Twitter Card previews do not work in client-side Flutter apps, and what to do about it.',
       text:
@@ -262,8 +260,7 @@ class Post {
     Post._(
       id: 15,
       image: '/images/post-15.webp',
-      title:
-          'Building Internal Links for Better Flutter Web Crawl Coverage',
+      title: 'Building Internal Links for Better Flutter Web Crawl Coverage',
       description:
           'Google crawl prioritization relies on internal links. Here is how to structure a Flutter web app so every important URL gets discovered.',
       text:
