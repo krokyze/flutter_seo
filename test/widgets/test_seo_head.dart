@@ -6,10 +6,7 @@ import '../const.dart';
 class TestSeoHead extends StatelessWidget {
   final Widget? child;
 
-  const TestSeoHead({
-    super.key,
-    this.child,
-  });
+  const TestSeoHead({super.key, this.child});
 
   @override
   Widget build(BuildContext context) {

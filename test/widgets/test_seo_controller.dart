@@ -19,11 +19,7 @@ class TestSeoController extends StatelessWidget {
     return SeoController(
       enabled: enabled,
       tree: tree(context),
-      child: MaterialApp(
-        home: Center(
-          child: child,
-        ),
-      ),
+      child: MaterialApp(home: Center(child: child)),
     );
   }
 }

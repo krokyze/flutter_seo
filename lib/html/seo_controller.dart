@@ -104,10 +104,7 @@ class _SeoControllerState extends State<SeoController> {
         .nonNulls
         .forEach((node) => head.removeChild(node));
 
-    head.insertAdjacentHTML(
-      'beforeEnd',
-      html.head.toJS,
-    );
+    head.insertAdjacentHTML('beforeEnd', html.head.toJS);
   }
 
   void _updateBody(SeoHtml html) {
@@ -132,10 +129,7 @@ class _SeoControllerState extends State<SeoController> {
 
   @override
   Widget build(BuildContext context) {
-    return _InheritedSeoTreeWidget(
-      tree: widget.tree,
-      child: widget.child,
-    );
+    return _InheritedSeoTreeWidget(tree: widget.tree, child: widget.child);
   }
 
   @override
@@ -149,10 +143,7 @@ class _SeoControllerState extends State<SeoController> {
 class _InheritedSeoTreeWidget extends InheritedWidget {
   final SeoTree tree;
 
-  const _InheritedSeoTreeWidget({
-    required this.tree,
-    required super.child,
-  });
+  const _InheritedSeoTreeWidget({required this.tree, required super.child});
 
   @override
   bool updateShouldNotify(_InheritedSeoTreeWidget old) => true;

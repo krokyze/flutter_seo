@@ -27,17 +27,9 @@ class Seo extends StatelessWidget {
     required this.child,
   });
 
-  const Seo.html({
-    super.key,
-    required String html,
-    required this.child,
-  });
+  const Seo.html({super.key, required String html, required this.child});
 
-  const Seo.head({
-    super.key,
-    required List<HeadTag> tags,
-    required this.child,
-  });
+  const Seo.head({super.key, required List<HeadTag> tags, required this.child});
 
   @override
   Widget build(BuildContext context) => child;

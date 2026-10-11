@@ -29,11 +29,8 @@ class Seo extends StatelessWidget {
     required this.child,
   }) : tag = LinkTag(anchor: anchor, href: href, rel: rel);
 
-  Seo.html({
-    super.key,
-    required String html,
-    required this.child,
-  }) : tag = HtmlTag(html: html);
+  Seo.html({super.key, required String html, required this.child})
+    : tag = HtmlTag(html: html);
 
   Seo.head({
     super.key,
@@ -43,10 +40,6 @@ class Seo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SeoController.process(
-      context: context,
-      tag: tag,
-      child: child,
-    );
+    return SeoController.process(context: context, tag: tag, child: child);
   }
 }

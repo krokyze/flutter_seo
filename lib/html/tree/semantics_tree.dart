@@ -7,7 +7,8 @@ import 'package:seo/src/seo_tag.dart';
 import 'package:seo/src/seo_tree.dart';
 
 class SemanticsTree extends SeoTree {
-  PipelineOwner get _pipelineOwner => WidgetsBinding.instance.pipelineOwner;
+  SemanticsOwner? get _semanticsOwner =>
+      WidgetsBinding.instance.renderViews.firstOrNull?.owner?.semanticsOwner;
 
   @override
   Stream<void> changes() {
@@ -15,14 +16,18 @@ class SemanticsTree extends SeoTree {
     // ignore: close_sinks
     late StreamController<void> controller;
     SemanticsHandle? handle;
+    SemanticsOwner? owner;
+
+    void listener() => controller.add(null);
 
     void onStart() {
-      handle = _pipelineOwner.ensureSemantics(
-        listener: () => controller.add(null),
-      );
+      handle = SemanticsBinding.instance.ensureSemantics();
+      owner = _semanticsOwner?..addListener(listener);
     }
 
     void onStop() {
+      owner?.removeListener(listener);
+      owner = null;
       handle?.dispose();
       handle = null;
     }
@@ -39,7 +44,7 @@ class SemanticsTree extends SeoTree {
 
   @override
   SeoTreeNode? traverse() {
-    final node = _pipelineOwner.semanticsOwner?.rootSemanticsNode;
+    final node = _semanticsOwner?.rootSemanticsNode;
     if (node == null) return null;
 
     return _traverse(node);
@@ -67,36 +72,35 @@ class SemanticsTree extends SeoTree {
 
   @override
   Widget process(SeoTag tag, Widget child) {
-    if (tag is TextTag) {
-      return Semantics(
+    return switch (tag) {
+      TextTag() => Semantics(
         label: tag.text,
+        headingLevel: switch (tag.style) {
+          TextTagStyle.p => null,
+          final style => style.index + 1,
+        },
         excludeSemantics: true,
         container: true,
         child: child,
-      );
-    } else if (tag is ImageTag) {
-      return Semantics(
+      ),
+      ImageTag() => Semantics(
         label: tag.alt,
         value: tag.src,
         image: true,
         excludeSemantics: true,
         container: true,
         child: child,
-      );
-    } else if (tag is LinkTag) {
-      return Semantics(
+      ),
+      LinkTag() => Semantics(
         label: tag.anchor,
-        value: tag.href,
+        linkUrl: Uri.tryParse(tag.href),
         link: true,
         container: true,
         child: child,
-      );
-    } else if (tag is HtmlTag || tag is HeadTags) {
+      ),
       // Semantics doesn't support a way to pass head tag info to SemanticsNode
-      return child;
-    }
-
-    throw UnimplementedError('unsupported tag: $tag');
+      HtmlTag() || HeadTags() => child,
+    };
   }
 }
 
@@ -104,10 +108,7 @@ class _Node with SeoTreeNode {
   final SemanticsNode parent;
   final List<_Node> children;
 
-  const _Node({
-    required this.parent,
-    required this.children,
-  });
+  const _Node({required this.parent, required this.children});
 
   @override
   bool get seo => _text || _link || _image;
@@ -117,11 +118,12 @@ class _Node with SeoTreeNode {
   }
 
   bool get _link {
-    return parent.hasFlag(SemanticsFlag.isLink) && parent.value.isNotEmpty;
+    return parent.flagsCollection.isLink &&
+        '${parent.linkUrl ?? ''}'.isNotEmpty;
   }
 
   bool get _image {
-    return parent.hasFlag(SemanticsFlag.isImage) && parent.value.isNotEmpty;
+    return parent.flagsCollection.isImage && parent.value.isNotEmpty;
   }
 
   @override
@@ -130,7 +132,7 @@ class _Node with SeoTreeNode {
     final value = parent.value;
 
     if (_link) {
-      return 'link: $label | url: $value';
+      return 'link: $label | url: ${parent.linkUrl}';
     } else if (_image) {
       return 'image: $label | url: $value';
     } else if (_text) {
@@ -150,7 +152,7 @@ class _Node with SeoTreeNode {
       return html.copyWith(
         body: linkTag(
           anchor: parent.label,
-          href: parent.value,
+          href: parent.linkUrl.toString(),
           rel: null,
           content: html.body,
         ),
@@ -169,16 +171,15 @@ class _Node with SeoTreeNode {
       return html.copyWith(
         body: textTag(
           text: parent.label,
-          style: TextTagStyle.p,
+          style: switch (parent.headingLevel) {
+            0 => TextTagStyle.p,
+            final level => TextTagStyle.values[level - 1],
+          },
           content: html.body,
         ),
       );
     } else {
-      return html.copyWith(
-        body: divTag(
-          content: html.body,
-        ),
-      );
+      return html.copyWith(body: divTag(content: html.body));
     }
   }
 }

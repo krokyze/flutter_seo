@@ -23,17 +23,7 @@ mixin SeoTreeNode {
     required TextTagStyle style,
     required String content,
   }) {
-    const tagStyleMap = {
-      TextTagStyle.h1: 'h1',
-      TextTagStyle.h2: 'h2',
-      TextTagStyle.h3: 'h3',
-      TextTagStyle.h4: 'h4',
-      TextTagStyle.h5: 'h5',
-      TextTagStyle.h6: 'h6',
-      TextTagStyle.p: 'p',
-    };
-
-    final tag = tagStyleMap[style] ?? 'p';
+    final tag = style.name;
     return '<$tag style="color:black;">$text</$tag>$content';
   }
 
@@ -53,63 +43,45 @@ mixin SeoTreeNode {
     required String? rel,
     required String content,
   }) {
-    final attributes = {
-      'href': href,
-      'rel': rel,
-    }
-        .entries
-        .where((entry) => entry.value != null)
-        .map((entry) => '${entry.key}="${entry.value}"')
-        .join(' ');
+    final attributes = _attributes({'href': href, 'rel': ?rel});
 
     return '<div><a $attributes><p>$anchor</p></a>$content</div>';
   }
 
-  String htmlTag({
-    required String html,
-    required String content,
-  }) {
+  String htmlTag({required String html, required String content}) {
     return '$html$content';
   }
 
-  String headTag({
-    required head_tag.HeadTag tag,
-  }) {
-    if (tag is head_tag.MetaTag) {
-      final attributes = {
-        'name': tag.name,
-        'http-equiv': tag.httpEquiv,
-        'content': tag.content,
-      }
-          .entries
-          .where((entry) => entry.value != null)
-          .map((entry) => '${entry.key}="${entry.value}"')
-          .join(' ');
+  String headTag({required head_tag.HeadTag tag}) {
+    final attributes = _attributes(switch (tag) {
+      head_tag.MetaTag() => {
+        'name': ?tag.name,
+        'http-equiv': ?tag.httpEquiv,
+        'content': ?tag.content,
+      },
+      head_tag.LinkTag() => {
+        'title': ?tag.title,
+        'rel': ?tag.rel,
+        'type': ?tag.type,
+        'hreflang': ?tag.hreflang,
+        'href': ?tag.href,
+        'media': ?tag.media,
+      },
+    });
 
-      return '<meta $attributes flt-seo>';
-    } else if (tag is head_tag.LinkTag) {
-      final attributes = {
-        'title': tag.title,
-        'rel': tag.rel,
-        'type': tag.type,
-        'hreflang': tag.hreflang,
-        'href': tag.href,
-        'media': tag.media,
-      }
-          .entries
-          .where((entry) => entry.value != null)
-          .map((entry) => '${entry.key}="${entry.value}"')
-          .join(' ');
-
-      return '<link $attributes flt-seo>';
-    }
-
-    throw UnimplementedError('unsupported tag: $tag');
+    return switch (tag) {
+      head_tag.MetaTag() => '<meta $attributes flt-seo>',
+      head_tag.LinkTag() => '<link $attributes flt-seo>',
+    };
   }
 
-  String divTag({
-    required String content,
-  }) {
+  String divTag({required String content}) {
     return '<div>$content</div>';
   }
+}
+
+String _attributes(Map<String, String> attributes) {
+  return attributes.entries
+      .map((entry) => '${entry.key}="${entry.value}"')
+      .join(' ');
 }

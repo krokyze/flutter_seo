@@ -6,10 +6,7 @@ import '../const.dart';
 class TestSeoText extends StatelessWidget {
   final TextTagStyle? tagStyle;
 
-  const TestSeoText({
-    super.key,
-    this.tagStyle,
-  });
+  const TestSeoText({super.key, this.tagStyle});
 
   @override
   Widget build(BuildContext context) {

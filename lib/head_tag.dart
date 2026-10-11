@@ -1,4 +1,4 @@
-abstract class HeadTag {
+sealed class HeadTag {
   const HeadTag();
 }
 
@@ -7,11 +7,7 @@ class MetaTag extends HeadTag {
   final String? httpEquiv;
   final String? content;
 
-  const MetaTag({
-    this.name,
-    this.httpEquiv,
-    this.content,
-  });
+  const MetaTag({this.name, this.httpEquiv, this.content});
 }
 
 class LinkTag extends HeadTag {

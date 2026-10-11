@@ -19,20 +19,12 @@ class TestSeoPage extends StatelessWidget {
               TestSeoText(),
               TestSeoLink(
                 child: Column(
-                  children: [
-                    TestSeoText(),
-                    TestSeoText(),
-                    TestSeoText(),
-                  ],
+                  children: [TestSeoText(), TestSeoText(), TestSeoText()],
                 ),
               ),
               TestSeoLink(
                 child: Column(
-                  children: [
-                    TestSeoImage(),
-                    TestSeoImage(),
-                    TestSeoImage(),
-                  ],
+                  children: [TestSeoImage(), TestSeoImage(), TestSeoImage()],
                 ),
               ),
             ],
