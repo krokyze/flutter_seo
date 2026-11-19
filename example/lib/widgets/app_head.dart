@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:seo/seo.dart';
 import 'package:visibility_detector/visibility_detector.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:seo/html/seo_controller.dart';
 import 'package:seo/src/seo_tree.dart';
 

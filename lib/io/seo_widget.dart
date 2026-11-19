@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:seo/head_tag.dart';
 import 'package:seo/src/seo_tag.dart';
 

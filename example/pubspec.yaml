@@ -12,6 +12,7 @@ dependencies:
   visibility_detector: 0.4.0+2
   seo:
     path: ../
+  material_ui: 1.11.1
 
 dev_dependencies:
   flutter_lints: 6.0.0

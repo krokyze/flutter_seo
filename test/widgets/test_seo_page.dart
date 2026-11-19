@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'test_seo_image.dart';
 import 'test_seo_link.dart';
