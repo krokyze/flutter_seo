@@ -3,7 +3,7 @@ import 'dart:js_interop';
 import 'package:seo/html/node_list_extension.dart';
 import 'package:web/web.dart';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:seo/src/seo_html.dart';

@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:seo/seo.dart';
 import 'package:seo_example/main_router.dart';
 import 'package:seo_example/post.dart';
