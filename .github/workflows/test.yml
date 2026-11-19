@@ -28,4 +28,4 @@ jobs:
           java-version: "17"
       - name: flutter test
         run: |
-          fvm flutter test --platform chrome
+          fvm flutter test --platform chrome --no-deprecated-js-interop
