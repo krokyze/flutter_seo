@@ -126,6 +126,6 @@ View demo here: [flutter-seo.netlify.app](https://flutter-seo.netlify.app/posts)
 
 #### Google Search
 
-Landing page has been indexed and does appear in [Search](https://www.google.com/search?q=flutter+seo+green+papaya+salad)
+Landing page has been indexed and does appear in [Search](https://www.google.com/search?q=site:flutter-seo.netlify.app+%22canvaskit%22)
 
 Remaining pages have `Discovered - currently not indexed` status. I am investigating why.
